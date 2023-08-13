@@ -37,9 +37,11 @@ const SongItem: React.FC<SongItemProps> = ({
         <h3 className="font-semibold w-full truncate">
           {data.title}
         </h3>
-        <p className="w-full text-neutral-400 text-sm p-4 truncate">
-          By {data.author}
-        </p>
+        <div className="w-full text-neutral-400 text-sm p-2">
+          <p className="line-clamp-2">
+            By {data.author}
+          </p>
+        </div>
       </div>
       <div className="absolute bottom-24 right-5">
         <PlayButton className="translate-y-1/4 group-hover:translate-y-0"/>
