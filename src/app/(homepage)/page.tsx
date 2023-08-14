@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Footer from "@/components/footer/Footer";
 import ListItem from "@/components/ListItem";
 import HomeContent from "@/components/contents/HomeContent";
 import { getSession } from "@/supabase/server";
@@ -18,8 +19,8 @@ export default async function Home() {
         className="bg-gradient-to-b from-teal-700 to-teal-700/80" 
         session={session} 
       />
-      <div className="bg-gradient flex-1 w-full rounded-b-lg">
-        <div className="px-6 pb-6">
+      <div className="bg-gradient flex-1 w-full">
+        <header className="px-6 pb-6">
           <h1 className="text-3xl text-white font-semibold">
             Welcome back
           </h1>
@@ -30,11 +31,11 @@ export default async function Home() {
               href="/liked"
             />
           </div>
-        </div>    
+        </header>    
         <div className="mt-4 mb-7 px-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl text-white font-semibold">
-              Newest Songs
+              Spotify Playlists
             </h2>
           </div>
           <div>
@@ -42,6 +43,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

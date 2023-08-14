@@ -73,3 +73,13 @@ export interface UploadForm {
   song: FileList | null
   image: FileList | null
 }
+
+export interface PostDataProps {
+  url: string
+  data?: { price: Price }
+}
+
+export interface CustomerDataProps {
+  metadata: { supabaseUUID: string }
+  email?: string
+}

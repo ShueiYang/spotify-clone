@@ -24,7 +24,7 @@ export default function LikedContent({
   }
 
   return (
-    <div className="flex flex-col w-full gap-y-2  px-6">
+    <div className="flex flex-col w-full gap-y-2 px-6 mb-4">
       {songs.map(song => (
         <div key={song.id} className="flex items-center gap-x-4 w-full">
           <div className="relative group flex-1">

@@ -17,13 +17,13 @@ const figtree = Figtree({ subsets: ["latin"] })
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Spotify Clone",
+  title: "Spotify Clone - Home",
   description: "Listen your favorite music!",
 }
 
 
 export default async function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {

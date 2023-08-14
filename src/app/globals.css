@@ -12,6 +12,9 @@
   .section-container {
     @apply flex-1 h-full px-2 md:pl-0 overflow-x-auto border-y-8 border-black
   }
+  .item-link {
+    @apply text-neutral-400 hover:text-neutral-200 hover:underline underline-offset-2 pb-2 cursor-pointer
+  }
 }
 
 

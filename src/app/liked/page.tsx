@@ -1,12 +1,16 @@
+import { Metadata } from "next";
+import Image from "next/image";
 import Header from "@/components/Header";
+import Footer from "@/components/footer/Footer";
 import LikedContent from "@/components/contents/LikedContent";
 import getFavoriteSongs from "@/supabase/actions/getLikedSongs";
 import { getSession } from "@/supabase/server";
-import Image from "next/image";
-
 
 export const revalidate = 0;
 
+export const metadata: Metadata = {
+  title: "Spotify Clone - favorite",
+}
 
 export default async function LikedPage() {
 
@@ -19,8 +23,8 @@ export default async function LikedPage() {
         className="bg-gradient-to-b from-teal-700 to-teal-700/80"
         session={session}
       />
-      <div className="bg-gradient flex-1 w-full rounded-b-lg pt-10 md:pt-14">
-        <div className="flex flex-col md:flex-row items-center gap-x-5 px-6 pb-6">
+      <div className="bg-gradient flex-1 w-full pt-10 md:pt-14">
+        <header className="flex flex-col md:flex-row items-center gap-x-5 px-6 pb-6">
           <div className="relative h-32 w-32 lg:w-44 lg:h-44">
             <Image
               className="object-cover"
@@ -38,9 +42,10 @@ export default async function LikedPage() {
               Favorite Songs
             </h1>
           </div>
-        </div>  
+        </header>  
         <LikedContent songs={songs} />
       </div>
+      <Footer />
     </div>
   )
 }

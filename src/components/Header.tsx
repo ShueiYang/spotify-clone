@@ -46,8 +46,7 @@ const Header = ({ session, className }: HeaderProps) => {
 
   return (
     <nav 
-      className={twMerge(`sticky w-full top-0 h-fit flex items-center justify-between p-6 pb-4 rounded-t-lg
-        z-10 backdrop-blur-[2px]`,
+      className={twMerge(`sticky w-full top-0 h-fit flex items-center justify-between p-6 pb-4 rounded-t-lg z-10 backdrop-blur-[2px]`,
         className
       )}
     >
