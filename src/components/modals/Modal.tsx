@@ -25,12 +25,11 @@ const Modal: React.FC<ModalProps> = ({
     >
       {/* <Dialog.Trigger /> */}
       <Dialog.Portal>
-        <Dialog.Overlay 
-           className="fixed inset-0 bg-neutral-900/90 backdrop-blur-sm z-20"
-        />
+        <Dialog.Overlay className="DialogOverlay fixed inset-0 bg-neutral-900/90 backdrop-blur-sm z-20"/>
         <Dialog.Content
-          className="fixed bg-neutral-800 drop-shadow-md border border-neutral-700 top-[50%] left-[50%] p-6
-            w-full md:w-[90vw] md:max-w-[450px] h-full md:h-auto md:max-h-[750px] translate-x-[-50%] translate-y-[-50%] rounded-md focus:outline-none z-30"
+          className="DialogContent fixed bg-neutral-800 drop-shadow-md border border-neutral-700 
+          top-[50%] left-[50%] p-6 w-full md:w-[90vw] md:max-w-[450px] h-full md:h-auto md:max-h-[750px] 
+          translate-x-[-50%] translate-y-[-50%] rounded-md focus:outline-none z-30"
         >
           <Dialog.Title className="text-xl text-center font-bold mb-4">
             {title}
