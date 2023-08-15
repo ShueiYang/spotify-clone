@@ -24,7 +24,7 @@ const SongItem: React.FC<SongItemProps> = ({
       className="relative group flex flex-col items-center justify-center rounded-md gap-x-4 
         overflow-hidden bg-neutral-400/5 cursor-pointer p-3 transition hover:bg-neutral-400/10"
     >
-      <div className="relative aspect-square w-full h-full rounded-md overflow-hidden">
+      <div className="relative aspect-square w-full h-auto rounded-md overflow-hidden">
         <Image 
           className="object-cover"
           src={imagePath || "/images/liked.png"}
@@ -33,7 +33,7 @@ const SongItem: React.FC<SongItemProps> = ({
           sizes="(max-width: 250px) 100vw"
         />
       </div>
-      <div className="flex flex-col items-start w-full pt-4 gap-y-1">
+      <div className="flex flex-col flex-1 items-start w-full pt-4 gap-y-1">
         <h3 className="font-semibold w-full truncate">
           {data.title}
         </h3>

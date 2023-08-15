@@ -17,21 +17,15 @@ const SubscribeModal = ({
 }: {
   products: ProductWithPrice[]
 }) => {
-  const [ priceIdLoading, setPriceIdLoading ] = useState<string>("");
   const [ isPending, setIsPending ] = useState(false);
 
   const subscribeModal = useSubscribeModal();
   const user = useUserStore((state) => state.user);
-  const subscription = useUserStore((state) => state.subscription);
-
+ 
 
   async function handleCheckout(price: Price) {
-    // setPriceIdLoading(price.id);
     if(!user) {
       return toast.error("User must be authenticated")
-    }
-    if(subscription) {
-      return toast("User already subscribed")
     }
     try {
       setIsPending(true);
@@ -46,7 +40,6 @@ const SubscribeModal = ({
       console.error(err)
       toast.error((err as Error)?.message)
     } finally {
-      // setPriceIdLoading("")
       setIsPending(false)
     }
   }
@@ -59,16 +52,12 @@ const SubscribeModal = ({
 
   return (
     <Modal
-      title="Only for premium users"
+      title="Subscribe Plans TEST Mode"
       description="Listen to music with Spotify Premium"
       isOpen={subscribeModal.isOpen}
       onChange={onChange}
     >
-      {subscription ?
-        <p className="text-center">
-          Already subscribed
-        </p>
-      : products.length === 0 ?    
+      {products.length === 0 ?    
           <p className="text-center">
             No products available
           </p>
@@ -85,9 +74,9 @@ const SubscribeModal = ({
               key={price.id}
               onClick={()=> {handleCheckout(price)}}
               disabled={isPending}
-              className="mb-4"
+              className="mb-4 hover:scale-[1.02]"
             >
-              {`Subscribe for ${formatPrice(price)} / ${price.interval}`}
+              {`${product.name} for ${formatPrice(price)} / ${price.interval}`}
             </Button>
           ))
         })

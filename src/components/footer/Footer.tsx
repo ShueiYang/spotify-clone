@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-neutral-900/95 rounded-b-lg">
-      <div className="flex flex-col sm:flex-row justify-between">
+      <div className="flex flex-col sm:flex-row justify-between mt-8">
         <nav className="flex flex-col sm:flex-row flex-wrap gap-y-8 gap-x-12 p-6 max-w-[675px] xl:flex-1 xl:justify-between">
           <div>
             <h3 className="mb-2">Company</h3>

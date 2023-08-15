@@ -24,7 +24,6 @@ export default function MusicPlayer() {
   const playPause = usePlayerStore((state) => state.playPause)
   const setCurrentIndex = usePlayerStore((state) => state.setCurrentIndex)
   const reset = usePlayerStore((state) => state.reset)
-  // const { song } = useGetSongById(activeId);
   
   // for exit animation
   const [isExiting, setIsExiting] = useState(false);

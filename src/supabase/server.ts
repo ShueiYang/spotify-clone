@@ -73,7 +73,6 @@ export async function getSubscribInfo(user: User | null): Promise<SubscribInfo> 
 }
 
 
-
 function getUserDetails() {
   const supabase = createServerSupabaseClient();
   return supabase.from("users").select("*").single();

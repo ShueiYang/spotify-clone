@@ -60,7 +60,7 @@ const AccountContent: React.FC<AccountContentProps> = ({
             plan.
           </p>
           <p>
-            {subscription.current_period_end && 
+            {subscription.cancel_at_period_end && 
               `Your plan will be cancelled on ${formatDate(subscription.current_period_end)}`
             }
           </p>
