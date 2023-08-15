@@ -6,7 +6,7 @@ import { UserStore, useUserStore } from "@/hooks/useUserStore"
 
 export default function StoreInitializer({
   ...props
-}: UserStore
+}: Partial<UserStore>
 ) {
   // const initialized = useRef(false);
   // if this ref is not initialized then we set the store.

@@ -3,7 +3,7 @@ import "react-loading-skeleton/dist/skeleton.css"
 import type { Metadata } from "next"
 import { Figtree } from "next/font/google"
 
-import { getUser } from "@/supabase/server";
+import { getSubscribInfo, getUser } from "@/supabase/server";
 import getSongsByUserId from "@/supabase/actions/getSongsByUserId";
 import getActiveProductsWithPrices from "@/supabase/actions/getActiveProductsWithPrices";
 
@@ -31,15 +31,14 @@ export default async function RootLayout({
   const user = await getUser();
   const userSongs = await getSongsByUserId();
   const products = await getActiveProductsWithPrices();
-
+  const result = await getSubscribInfo(user);
   
   return (
     <html lang="en">
       <body className={figtree.className}>
         <StoreInitializer 
           user={user}
-          userDetails={null}
-          subscription={null}
+          subscription={result.subscription}
         />
         <ToasterProvider />
         <ModalProvider products={products} />

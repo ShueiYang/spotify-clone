@@ -22,6 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const router = useRouter();
   const pathname = usePathname();
   const user = useUserStore((state) => state.user);
+  const subscription = useUserStore((state) => state.subscription);
   const onOpen = useAuthModal((state) => state.onOpen);
   
   const navigationItems = useMemo(() => [
@@ -63,7 +64,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         <SongLibrary userSongs={userSongs} />
         <div className="flex flex-col items-center p-6">
           <p className="text-center text-neutral-200">
-            {`Subscribe to Premium to access more features (Test Mode)`}
+            {subscription 
+              ? `Welcome to ${subscription.prices?.products?.name} !`
+              : `Subscribe to Premium to access more features (Test Mode)`
+            }
           </p>
           <Button 
             className="bg-white w-[150px] px-4 py-2 my-4"
