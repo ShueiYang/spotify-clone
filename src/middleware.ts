@@ -10,7 +10,9 @@ export async function middleware(req: NextRequest) {
   const supabase = createMiddlewareClient<Database>({ req, res })
   const { data } = await supabase.auth.getSession()
  
-  if(data.session === null && req.nextUrl.pathname.startsWith("/liked")) {
+  if(data.session === null &&
+    (req.nextUrl.pathname.startsWith("/liked") || req.nextUrl.pathname.startsWith("/account"))
+  ) {
     return NextResponse.redirect(new URL("/", url))
   }
   return res;
