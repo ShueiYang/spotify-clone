@@ -16,7 +16,6 @@ export async function postData({
 }: PostDataProps 
 ) {
   try {
-    console.log("POST REQUEST", url, data)
     const response = await fetch(url, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -48,4 +47,14 @@ export function formatPrice(price: Price) {
   }).format((price.unit_amount || 0) / 100);
 
   return priceString;
+}
+
+
+export function formatDate(dateStr: string) {
+  const date = new Date(dateStr);
+  const formatDate = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "full"
+  }).format(date);
+
+  return formatDate;
 }

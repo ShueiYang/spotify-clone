@@ -16,7 +16,7 @@ interface SearchProps {
   searchParams: { title: string }
 };
 
-export default async function Search({searchParams}: SearchProps) {
+export default async function SearchPage({searchParams}: SearchProps) {
 
   const session = await getSession();
   const song = await getSongsByTitle(searchParams.title);
@@ -27,7 +27,7 @@ export default async function Search({searchParams}: SearchProps) {
         className="bg-neutral-900"
         session={session}
       />
-      <div className="bg-neutral-900 flex-1 w-full">
+      <div className="bg-gradient-black flex-1 w-full">
         <header className="flex flex-col gap-y-6 px-6 pb-6">
           <h1 className="text-3xl text-white font-semibold">
             Search

@@ -6,7 +6,7 @@ import { SubscribInfo, Subscription, UserDetails } from "@/types/custom.types";
 
 
 export const createServerSupabaseClient = cache(() => {
-  const cookieStore = cookies()
+  const cookieStore = cookies();
   return createServerComponentClient<Database>({ cookies: () => cookieStore })
 })
 
@@ -49,18 +49,27 @@ export async function getSubscribInfo(user: User | null): Promise<SubscribInfo> 
       subscription: null
     }
   }
-  const subscribInfo = {} as SubscribInfo
-  const [userDetailsPromise, subscriptionPromise] = await Promise.allSettled([
-    getUserDetails(), 
-    getSubscription(),
-  ])
-  if(userDetailsPromise.status === "fulfilled") {
-    subscribInfo.userDetails = userDetailsPromise.value.data as unknown as UserDetails
+  try {
+    const subscribInfo = {} as SubscribInfo
+    const [userDetailsPromise, subscriptionPromise] = await Promise.allSettled([
+      getUserDetails(), 
+      getSubscription(),
+    ])
+    if(userDetailsPromise.status === "fulfilled") {
+      subscribInfo.userDetails = userDetailsPromise.value.data as unknown as UserDetails
+    }
+    if(subscriptionPromise.status === "fulfilled") {
+      subscribInfo.subscription = subscriptionPromise.value.data as Subscription
+    }
+    return subscribInfo;
+
+  } catch (error) {
+    console.error("Unexpected getSubscribe error", error)
+    return {
+      userDetails: null,
+      subscription: null
+    }
   }
-  if(subscriptionPromise.status === "fulfilled") {
-    subscribInfo.subscription = subscriptionPromise.value.data as Subscription
-  }
-  return subscribInfo
 }
 
 
