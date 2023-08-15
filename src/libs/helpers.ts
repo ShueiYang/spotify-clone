@@ -1,10 +1,10 @@
-import { PostDataProps } from "@/types/custom.types";
+import { PostDataProps, Price } from "@/types/custom.types";
 
 
 export function getURL() {
-  let url = process.env.NEXT_PUBLIC_VERCEL_URL ?? "http//localhost:3000/";
+  let url = process.env.NEXT_PUBLIC_VERCEL_URL ?? "http://localhost:3000/";
 
-  url = url.includes("http") ? url : `https//${url}`;
+  url = url.includes("http") ? url : `https://${url}`;
   url = url.charAt(url.length - 1) === "/" ? url : `${url}/`;
   return url;
 }
@@ -37,4 +37,15 @@ export function toDateTime(secs: number) {
   const time = new Date("1970-01-01T00:30:00Z");
   time.setSeconds(secs)
   return time;
+}
+
+
+export function formatPrice(price: Price) {
+  const priceString = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: price.currency || "EUR",
+    minimumFractionDigits: 0
+  }).format((price.unit_amount || 0) / 100);
+
+  return priceString;
 }

@@ -23,6 +23,7 @@ export default function MusicPlayer() {
   const setIsActive = usePlayerStore((state) => state.setIsActive)
   const playPause = usePlayerStore((state) => state.playPause)
   const setCurrentIndex = usePlayerStore((state) => state.setCurrentIndex)
+  const reset = usePlayerStore((state) => state.reset)
   // const { song } = useGetSongById(activeId);
   
   // for exit animation
@@ -42,12 +43,16 @@ export default function MusicPlayer() {
     // trigger exit animation before removing the MusicPlayer component
     if(isExiting) {
       const exitTimer = setTimeout(() => {
+        setDuration(0)
+        setSeekTime(0)
+        setAppTime(0)
         setIsActive(false)
         setIsExiting(false)
+        reset();
       }, 500)
       return () => clearTimeout(exitTimer)
     }
-  }, [isExiting, setIsActive])
+  }, [isExiting, setIsActive, reset])
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {

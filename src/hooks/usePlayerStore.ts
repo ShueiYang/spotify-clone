@@ -16,9 +16,7 @@ interface PlayerStore {
   setIsActive: (state: boolean) => void
   setActiveId: (id: string) => void
   setCurrentIndex: (index: number) => void
-
-  // setIds: (ids: string[]) => void
-  // reset: () => void
+  reset: () => void
 }
 
 
@@ -37,9 +35,8 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
   setIsActive: (state) => set({isActive: state}),
   setActiveId: (id) => set({activeId: id}),
   setCurrentIndex: (index) => set({currentIndex: index}),
+  reset: () => set({currentSongs: []})
 
   // setId: (id) => set({activeId: id}),
-  // setIds: (arrayIds) => set({ids: arrayIds}),
-  // reset: () => set({ ids: [], activeId: undefined})
 }))
 

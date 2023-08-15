@@ -32,12 +32,13 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         .select("*")
         .eq("user_id", user.id)
         .eq("song_id", songId)
-        .single()
+        .maybeSingle()  // query result must be 0 or 1 row otherwise return an error
       if(!error && data) {
         setIsLiked(true)
+      } else {
+        setIsLiked(false)
       }
     }
-
     fetchFavoriteSong()
   }, [user?.id, songId])
 

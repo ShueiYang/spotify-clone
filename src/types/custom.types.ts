@@ -62,6 +62,10 @@ export interface Subscription {
   price?: Price
 }
 
+export interface ProductWithPrice extends Product {
+  prices?: Price[]
+}
+
 export interface SubscribInfo {
   userDetails: UserDetails | null
   subscription: Subscription | null

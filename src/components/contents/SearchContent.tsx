@@ -17,7 +17,7 @@ export default function SearchContent({
 
   if(songs.length === 0) {
     return (
-      <div className="flex flex-col w-full gap-y-2 px-6 text-neutral-400">
+      <div className="flex flex-col w-full gap-y-2 px-6 mb-6 text-neutral-400">
         No songs found.
       </div>
     )  

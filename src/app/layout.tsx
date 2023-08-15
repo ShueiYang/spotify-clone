@@ -11,6 +11,7 @@ import ModalProvider from "@/providers/ModalProvider"
 import ToasterProvider from "@/providers/ToasterProvider";
 import StoreInitializer from "@/providers/UserProvider";
 import MusicPlayer from "@/components/musicPlayer/indexBar";
+import getActiveProductsWithPrices from "@/supabase/actions/getActiveProductsWithPrices";
 
 const figtree = Figtree({ subsets: ["latin"] })
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
   const user = await getUser();
   const result = await getSubscribInfo(user);
   const userSongs = await getSongsByUserId();
+  const products = await getActiveProductsWithPrices();
   // const accessToken = session?.access_token ?? null;
 
   
@@ -44,7 +46,7 @@ export default async function RootLayout({
           subscription={result.subscription}
         />
         <ToasterProvider />
-        <ModalProvider />
+        <ModalProvider products={products} />
         <main className="relative flex h-full">
           <Sidebar userSongs={userSongs} />
           <section className="section-container">

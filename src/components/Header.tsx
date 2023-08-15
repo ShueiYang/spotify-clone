@@ -12,6 +12,7 @@ import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 
 import { ViewType, useAuthModal } from "@/hooks/useAuthModal";
+import { usePlayerStore } from "@/hooks/usePlayerStore";
 import Button from "@/components/customButtons/Button";
 import supabaseClient from "@/supabase/client";
 
@@ -27,10 +28,12 @@ const Header = ({ session, className }: HeaderProps) => {
   // Zustand custom hook
   const onOpen = useAuthModal((state) => state.onOpen)
   const setView = useAuthModal((state) => state.setView)
+  const reset = usePlayerStore((state) => state.reset)
   
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     // reset any playing songs
+    reset();
     router.refresh();
     if(error) {
       toast.error(error.message)   
@@ -52,13 +55,13 @@ const Header = ({ session, className }: HeaderProps) => {
     >
       <div className="hidden md:flex gap-x-2 items-center">
         <button 
-          onClick={()=> router.back()}
+          // onClick={()=> router.back()}
           className="flex items-center justify-center rounded-full bg-black hover:opacity-75 transition"
         >
           <RxCaretLeft size={35} className="text-white"/>
         </button>
         <button
-          onClick={()=> router.forward()}
+          // onClick={()=> router.forward()}
           className="flex items-center justify-center rounded-full bg-black hover:opacity-75 transition"
         >
           <RxCaretRight size={35} className="text-white"/>

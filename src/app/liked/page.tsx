@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function LikedPage() {
 
   const session = await getSession();
-  const songs = await getFavoriteSongs();
+  const songs = await getFavoriteSongs(session);
 
   return (
     <div className="flex flex-col h-full">
