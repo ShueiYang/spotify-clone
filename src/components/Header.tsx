@@ -68,12 +68,18 @@ const Header = ({ session, className }: HeaderProps) => {
         </button>
       </div>
       <div className="flex md:hidden gap-x-2 items-center">
-        <button className="flex items-center bg-white rounded-full p-2 justify-center hover:opacity-70 transition">
+        <Link 
+          href="/"
+          className="flex items-center bg-white rounded-full p-2 justify-center hover:opacity-70 transition"   
+        >
           <GoHomeFill size={23} className="text-black" />
-        </button>
-        <button className="flex items-center bg-white rounded-full p-2 justify-center hover:opacity-70 transition">
+        </Link>
+        <Link 
+          href="/search"
+          className="flex items-center bg-white rounded-full p-2 justify-center hover:opacity-70 transition"
+        >
           <BiSearch size={23} className="text-black" />
-        </button>
+        </Link>
       </div>
       <div className="flex justify-between items-center gap-x-4">
       {session ? (
