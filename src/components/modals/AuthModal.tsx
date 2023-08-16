@@ -1,6 +1,6 @@
 "use client"
 
-import supabase from "@/supabase/client";
+import { createClientSupabaseClient } from "@/supabase/client";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared"
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import { useAuthModal } from "@/hooks/useAuthModal";
 
 const AuthModal = () => {
   const router = useRouter();
+  const supabase = createClientSupabaseClient();
   // const supabase = createClient(
   //   `${process.env.NEXT_PUBLIC_SUPABASE_URL}`,
   //   `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
@@ -29,7 +30,7 @@ const AuthModal = () => {
         onClose();
       }
     })
-  }, [router, onClose]);
+  }, [router, onClose, supabase.auth]);
 
 
   function onChange(open: boolean) {

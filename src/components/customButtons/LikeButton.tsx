@@ -1,6 +1,6 @@
 "use client"
 
-import supabaseClient from "@/supabase/client";
+import { createClientSupabaseClient } from "@/supabase/client";
 import { toast } from "react-hot-toast";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { useUserStore } from "@/hooks/useUserStore";
@@ -27,7 +27,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({
       return;
     }
     const fetchFavoriteSong = async () => {
-      const { data, error } = await supabaseClient
+      const supabase = createClientSupabaseClient();     
+      const { data, error } = await supabase
         .from("favorite_songs")
         .select("*")
         .eq("user_id", user.id)
@@ -45,11 +46,13 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart
 
   async function handleLike() {
+    const supabase = createClientSupabaseClient();
+    
     if(!user) {
       return onOpen();
     }
     if(isLiked) {
-      const { error } = await supabaseClient
+      const { error } = await supabase
         .from("favorite_songs")
         .delete()
         .eq("user_id", user.id)
@@ -61,7 +64,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         setIsLiked(false)
       }
     } else {
-      const { error } = await supabaseClient
+      const { error } = await supabase
         .from("favorite_songs")
         .insert({
           song_id: songId as number,

@@ -11,10 +11,10 @@ import { GoHomeFill } from "react-icons/go";
 import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 
+import { createClientSupabaseClient } from "@/supabase/client";
 import { ViewType, useAuthModal } from "@/hooks/useAuthModal";
 import { usePlayerStore } from "@/hooks/usePlayerStore";
 import Button from "@/components/customButtons/Button";
-import supabaseClient from "@/supabase/client";
 
 interface HeaderProps {
   session: Session | null 
@@ -31,7 +31,8 @@ const Header = ({ session, className }: HeaderProps) => {
   const reset = usePlayerStore((state) => state.reset)
   
   const handleLogout = async () => {
-    const { error } = await supabaseClient.auth.signOut();
+    const supabase = createClientSupabaseClient();
+    const { error } = await supabase.auth.signOut();
     // reset any playing songs
     reset();
     router.refresh();

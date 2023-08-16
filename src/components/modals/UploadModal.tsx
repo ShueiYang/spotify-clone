@@ -2,7 +2,7 @@
 
 import uniqid from "uniqid"
 import { useRouter } from "next/navigation";
-import supabaseClient from "@/supabase/client";
+import { createClientSupabaseClient } from "@/supabase/client";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useUploadModal } from "@/hooks/useUploadModal";
@@ -47,6 +47,7 @@ const UploadModal = () => {
   }
   
   async function onSubmit(values: UploadForm) {
+    const supabase = createClientSupabaseClient();
     try {
       const songFile = values.song?.[0]
       const imageFile = values.image?.[0]
@@ -60,7 +61,7 @@ const UploadModal = () => {
       const { 
         data: songData, 
         error: songError,
-      } = await supabaseClient.storage
+      } = await supabase.storage
         .from("songs")
         .upload(`song-${values.title}-${uniqueID}`, songFile, {
           cacheControl: "3600",
@@ -75,7 +76,7 @@ const UploadModal = () => {
       const { 
         data: imageData, 
         error: imageError,
-      } = await supabaseClient.storage
+      } = await supabase.storage
         .from("images")
         .upload(`image-${values.title}-${uniqueID}`, imageFile, {
           cacheControl: "3600",
@@ -86,7 +87,7 @@ const UploadModal = () => {
         return toast.error("Failed to upload image")
       }
       
-      const { error: supabaseError } = await supabaseClient
+      const { error: supabaseError } = await supabase
         .from("songs")
         .insert({
           user_id: user.id,
