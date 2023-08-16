@@ -104,7 +104,7 @@ export default function MusicPlayer() {
   }
 
   return (
-    <div className={`absolute h-28 bottom-0 inset-x-2 flex bg-gradient-to-br from-slate-700 to-fuchsia-700/40 backdrop-blur-lg z-10 
+    <div className={`absolute h-[100px] bottom-0 inset-x-2 flex bg-gradient-to-br from-slate-700 to-fuchsia-700/40 backdrop-blur-lg z-10 
       ${isExiting ? "animate-slidedown" : "animate-slideup"}`}
     >
       <div className="relative sm:px-12 px-8 w-full flex items-center justify-between" key={songUrl}>
