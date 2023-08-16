@@ -7,6 +7,7 @@ import { useUserStore } from "@/hooks/useUserStore";
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import TooltipMenu from "../Tooltip";
 
 interface LikeButtonProps {
   songId: string | number
@@ -82,12 +83,14 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   }
 
   return (
-    <button
-      className="hover:opacity-75 transition"
-      onClick={handleLike}
-    >
-      <Icon color={isLiked ? "#0d9488" : "white"} size={25} />
-    </button>
+    <TooltipMenu content={isLiked ? "Remove from your favorite" : "Save to your favorite"}>
+      <button
+        className="hover:opacity-75 transition"
+        onClick={handleLike}
+      >
+        <Icon color={isLiked ? "#0d9488" : "white"} size={25} />
+      </button>
+    </TooltipMenu>
   )
 }
 

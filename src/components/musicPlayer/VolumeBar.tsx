@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { InputEvent } from "./indexBar";
 import { BsFillVolumeUpFill, BsVolumeDownFill, BsFillVolumeMuteFill } from "react-icons/bs";
+import TooltipMenu from "@/components/Tooltip";
 
 interface VolumeBarProps {
   value: number
@@ -19,25 +20,35 @@ const VolumeBar: FC<VolumeBarProps> = ({
   setVolume 
 }) => (
   <div className="hidden lg:flex flex-1 items-center justify-end">
-    {value <= 1 && value > 0.5 && 
-      <BsFillVolumeUpFill 
-        size={25} color="#FFF" 
-        onClick={() => setVolume(0)} 
-      />
+    {value <= 1 && value > 0.5 &&
+      <TooltipMenu content="Mute">
+        <BsFillVolumeUpFill 
+          size={25} 
+          color="#FFF" 
+          onClick={() => setVolume(0)} 
+          className="cursor-pointer"
+        />
+      </TooltipMenu> 
     }
     {value <= 0.5 && value > 0 &&
-     <BsVolumeDownFill 
-      size={25} 
-      color="#FFF" 
-      onClick={() => setVolume(0)} 
-    />
+      <TooltipMenu content="Mute">
+        <BsVolumeDownFill 
+          size={25} 
+          color="#FFF" 
+          onClick={() => setVolume(0)}
+          className="cursor-pointer" 
+        />
+      </TooltipMenu>
     }
     {value === 0 && 
-      <BsFillVolumeMuteFill 
-        size={25} 
-        color="#FFF" 
-        onClick={() => setVolume(0.2)} 
-      />
+      <TooltipMenu content="Unmute">
+        <BsFillVolumeMuteFill 
+          size={25} 
+          color="#FFF" 
+          onClick={() => setVolume(0.2)}
+          className="cursor-pointer"
+        />
+      </TooltipMenu>
     }
     <input
       type="range"

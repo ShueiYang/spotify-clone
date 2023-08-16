@@ -3,6 +3,7 @@ import { Dispatch, FC, SetStateAction } from "react";
 import { RiSkipBackFill, RiSkipForwardFill } from "react-icons/ri";
 import { IoMdPause, IoMdPlay } from "react-icons/io";
 import { RxShuffle, RxUpdate, } from "react-icons/rx";
+import TooltipMenu from "@/components/Tooltip";
 
 
 interface ControlProps {
@@ -32,49 +33,61 @@ const Controls: FC<ControlProps> = ({
   
   return (
     <div className="flex items-center justify-around w-40 sm:w-48 md:w-52 lg:w-60 2xl:w-80">
-      <RxShuffle
-        size={20} 
-        color={shuffle ? "red" : "white"} 
-        onClick={() => setShuffle((prevState) => !prevState)} 
-        className="hidden sm:block cursor-pointer"
-      />
-      {currentSongs?.length && 
-        <RiSkipBackFill
-          size={29}
-          color="#FFF"  
-          onClick={handlePrevSong}    
-          className="cursor-pointer"
+      <TooltipMenu content={shuffle ? "Disable shuffle" : "Enable shuffle"}>
+        <RxShuffle
+          size={20} 
+          color={shuffle ? "#33e86c" : "white"} 
+          onClick={() => setShuffle((prevState) => !prevState)} 
+          className="hidden sm:block cursor-pointer"
         />
+      </TooltipMenu>
+      {currentSongs?.length &&
+        <TooltipMenu content="Previous">
+          <RiSkipBackFill
+            size={29}
+            color="#FFF"  
+            onClick={handlePrevSong}    
+            className="cursor-pointer"
+          />
+        </TooltipMenu> 
       }
       {isPlaying ? (
-        <IoMdPause
-          size={42} 
-          color="#FFF" 
-          onClick={handlePlayPause} 
-          className="cursor-pointer" 
-        />
+        <TooltipMenu content="Pause">
+          <IoMdPause
+            size={42} 
+            color="#FFF" 
+            onClick={handlePlayPause} 
+            className="cursor-pointer" 
+          />
+        </TooltipMenu>
       ) : (
-        <IoMdPlay
-          size={42}
-          color="#FFF" 
-          onClick={handlePlayPause} 
-          className="cursor-pointer"
-        />
+        <TooltipMenu content="Play">
+          <IoMdPlay
+            size={42}
+            color="#FFF" 
+            onClick={handlePlayPause} 
+            className="cursor-pointer"
+          />
+        </TooltipMenu>
       )}
       {currentSongs?.length &&
-        <RiSkipForwardFill 
-          size={29} 
-          color="#FFF" 
-          onClick={handleNextSong}
-          className="cursor-pointer"  
-        />
+        <TooltipMenu content="Next">
+          <RiSkipForwardFill 
+            size={29} 
+            color="#FFF" 
+            onClick={handleNextSong}
+            className="cursor-pointer"  
+          />
+        </TooltipMenu>
       }
-      <RxUpdate
-        size={20} 
-        color={repeat ? "red" : "white"} 
-        onClick={() => setRepeat((prevState) => !prevState)}  
-        className="hidden sm:block rotate-90 cursor-pointer"
-      />
+      <TooltipMenu content={repeat ? "Disable repeat" : "Enable repeat"}>
+        <RxUpdate
+          size={20} 
+          color={repeat ? "#33e86c" : "white"} 
+          onClick={() => setRepeat((prevState) => !prevState)}  
+          className="hidden sm:block rotate-90 cursor-pointer"
+        />
+      </TooltipMenu>
     </div>
   )
 };
