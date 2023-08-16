@@ -20,6 +20,9 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "Spotify Clone - Home",
   description: "Listen your favorite music!",
+  icons: {
+    icon: "/icon.png"
+  }
 }
 
 

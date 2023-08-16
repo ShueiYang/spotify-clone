@@ -1,7 +1,9 @@
 import { Song } from "@/types/custom.types";
 import { Dispatch, FC, SetStateAction } from "react";
-import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
-import { BsArrowRepeat, BsFillPauseFill, BsFillPlayFill, BsShuffle } from "react-icons/bs";
+import { RiSkipBackFill, RiSkipForwardFill } from "react-icons/ri";
+import { IoMdPause, IoMdPlay } from "react-icons/io";
+import { RxShuffle, RxUpdate, } from "react-icons/rx";
+
 
 interface ControlProps {
   isPlaying: boolean
@@ -27,51 +29,51 @@ const Controls: FC<ControlProps> = ({
   handlePrevSong, 
   handleNextSong,
 }) => {
-
+  
   return (
-    <div className="flex items-center justify-around md:w-40 lg:w-60 2xl:w-80">
-      <BsArrowRepeat
+    <div className="flex items-center justify-around w-40 sm:w-48 md:w-52 lg:w-60 2xl:w-80">
+      <RxShuffle
         size={20} 
-        color={repeat ? "red" : "white"} 
-        onClick={() => setRepeat((prevState) => !prevState)}  
+        color={shuffle ? "red" : "white"} 
+        onClick={() => setShuffle((prevState) => !prevState)} 
         className="hidden sm:block cursor-pointer"
       />
       {currentSongs?.length && 
-        <MdSkipPrevious 
-          size={30} 
+        <RiSkipBackFill
+          size={29}
           color="#FFF"  
           onClick={handlePrevSong}    
           className="cursor-pointer"
         />
       }
       {isPlaying ? (
-        <BsFillPauseFill 
-          size={45} 
+        <IoMdPause
+          size={42} 
           color="#FFF" 
           onClick={handlePlayPause} 
           className="cursor-pointer" 
         />
       ) : (
-        <BsFillPlayFill 
-          size={45} 
+        <IoMdPlay
+          size={42}
           color="#FFF" 
           onClick={handlePlayPause} 
           className="cursor-pointer"
         />
       )}
       {currentSongs?.length &&
-       <MdSkipNext 
-        size={30} 
-        color="#FFF" 
-        onClick={handleNextSong}
-        className="cursor-pointer"  
+        <RiSkipForwardFill 
+          size={29} 
+          color="#FFF" 
+          onClick={handleNextSong}
+          className="cursor-pointer"  
         />
       }
-      <BsShuffle 
+      <RxUpdate
         size={20} 
-        color={shuffle ? "red" : "white"} 
-        onClick={() => setShuffle((prevState) => !prevState)} 
-        className="hidden sm:block cursor-pointer"
+        color={repeat ? "red" : "white"} 
+        onClick={() => setRepeat((prevState) => !prevState)}  
+        className="hidden sm:block rotate-90 cursor-pointer"
       />
     </div>
   )
