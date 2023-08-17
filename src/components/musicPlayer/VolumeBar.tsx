@@ -19,7 +19,7 @@ const VolumeBar: FC<VolumeBarProps> = ({
   onChange, 
   setVolume 
 }) => (
-  <div className="hidden lg:flex flex-1 items-center justify-end">
+  <div className="flex sm:hidden lg:flex flex-1 items-center justify-end mt-2 lg:mt-0">
     {value <= 1 && value > 0.5 &&
       <TooltipMenu content="Mute">
         <BsFillVolumeUpFill 

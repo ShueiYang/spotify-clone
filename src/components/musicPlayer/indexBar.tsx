@@ -128,52 +128,54 @@ export default function MusicPlayer() {
           isActive={isActive}
           song={song}
         />
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <Controls 
-            isPlaying={isPlaying}
-            repeat={repeat}
-            setRepeat={setRepeat}
-            shuffle={shuffle}
-            setShuffle={setShuffle}
-            currentSongs={currentSongs}
-            handlePlayPause={handlePlayPause}
-            handlePrevSong={handlePrevSong}
-            handleNextSong={handleNextSong}
-          />
-          <Seekbar
-            value={appTime}
-            min={0}
-            max={duration}
-            onInput={(event: InputEvent) => {
-              setSeekTime(parseFloat(event.target.value))
-            }}
-            setSeekTime={setSeekTime}
-            appTime={appTime}
-          />
-          <Player
-            songUrl={songUrl}
-            volume={volume}
-            isPlaying={isPlaying}
-            seekTime={seekTime}
-            repeat={repeat}
-            onEnded={handleNextSong}
-            onTimeUpdate={(event: AudioEvent) => {
-              setAppTime((event.target as HTMLAudioElement).currentTime)
-            }}
-            onLoadedData={(event: AudioEvent) => {
-              setDuration((event.target as HTMLAudioElement).duration)
-            }}
+        <div className="flex flex-col lg:flex-row lg:basis-2/3">
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <Controls 
+              isPlaying={isPlaying}
+              repeat={repeat}
+              setRepeat={setRepeat}
+              shuffle={shuffle}
+              setShuffle={setShuffle}
+              currentSongs={currentSongs}
+              handlePlayPause={handlePlayPause}
+              handlePrevSong={handlePrevSong}
+              handleNextSong={handleNextSong}
+            />
+            <Seekbar
+              value={appTime}
+              min={0}
+              max={duration}
+              onInput={(event: InputEvent) => {
+                setSeekTime(parseFloat(event.target.value))
+              }}
+              setSeekTime={setSeekTime}
+              appTime={appTime}
+            />
+            <Player
+              songUrl={songUrl}
+              volume={volume}
+              isPlaying={isPlaying}
+              seekTime={seekTime}
+              repeat={repeat}
+              onEnded={handleNextSong}
+              onTimeUpdate={(event: AudioEvent) => {
+                setAppTime((event.target as HTMLAudioElement).currentTime)
+              }}
+              onLoadedData={(event: AudioEvent) => {
+                setDuration((event.target as HTMLAudioElement).duration)
+              }}
+            />
+          </div>
+          <VolumeBar 
+            value={volume} 
+            min={0} 
+            max={1} 
+            onChange={(event: InputEvent) => {
+              setVolume(parseFloat(event.target.value))
+            }} 
+            setVolume={setVolume}
           />
         </div>
-        <VolumeBar 
-          value={volume} 
-          min={0} 
-          max={1} 
-          onChange={(event: InputEvent) => {
-            setVolume(parseFloat(event.target.value))
-          }} 
-          setVolume={setVolume}
-        />
       </div>
     </div>
   )
