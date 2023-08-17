@@ -62,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       </Box>
       <Box className="flex flex-col justify-between h-full">
         <SongLibrary userSongs={userSongs} />
-        <div className="flex flex-col items-center p-6">
+        <div className="sticky bottom-0 flex flex-col items-center p-6 pt-4 bg-neutral-900">
           <p className="text-center text-neutral-200">
             {subscription 
               ? `Welcome to ${subscription.prices?.products?.name} !`
