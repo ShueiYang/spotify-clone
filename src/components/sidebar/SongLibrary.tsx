@@ -48,24 +48,6 @@ const SongLibrary = ({userSongs}: SidebarProps) => {
             onClick={() => onPlay(song.id as string)}
           />
         ))}
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        {/* <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1>
-        <h1>TESTING</h1> */}
       </div>
     </div>
   )
