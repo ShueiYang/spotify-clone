@@ -38,3 +38,21 @@ export const NAVIGATION_ITEMS3 = [
     title: "Free Mobile App",
   },
 ]
+
+export const NAVIGATION_FOOTER = [
+  {
+    title: "Legal",
+  },
+  {
+    title: "Privacy Policy",
+  },
+  {
+    title: "Cookie Settings",
+  },
+  {
+    title: "About Ads",
+  },
+  {
+    title: "Accessibility",
+  },
+]
