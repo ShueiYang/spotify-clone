@@ -18,7 +18,7 @@ const Track: React.FC<TrackProps> = ({
   const imageUrl = useLoadImageUrl(song);
   
   return (
-    <div className="basis-1/3 flex items-center justify-start">
+    <div className="lg:basis-1/3 flex items-center justify-start max-w-[50%]">
       <div className={`${isPlaying && isActive ? "animate-[spin_3s_linear_infinite]" : "" }
          relative hidden sm:block w-16 h-16 mr-4`
       }>
