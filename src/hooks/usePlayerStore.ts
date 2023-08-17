@@ -7,12 +7,16 @@ type PlayerState = {
   currentIndex: number
   isActive: boolean
   isPlaying: boolean
+  activeSongId: string
+  isExiting: boolean
 }
 type PlayerAction = {
   setCurrentSongs: (ids: Song[]) => void
   playPause: (state: boolean) => void
   setIsActive: (state: boolean) => void
   setCurrentIndex: (index: number) => void
+  setIsExiting: (state: boolean) => void
+  setActiveSongId: (state: string) => void
   reset: () => void
 }
 
@@ -22,6 +26,8 @@ type PlayerAction = {
     currentIndex: 0,
     isActive:false,
     isPlaying: false,
+    activeSongId: "",
+    isExiting: false
   }
 
 // create Store
@@ -32,6 +38,8 @@ export const usePlayerStore = create<PlayerState & PlayerAction>((set) => ({
   playPause: (state) => set({isPlaying: state}),
   setIsActive: (state) => set({isActive: state}),
   setCurrentIndex: (index) => set({currentIndex: index}),
+  setActiveSongId: (songId) => set({activeSongId: songId}),
+  setIsExiting: (state) => set({isExiting: state}),
   // reset all state
   reset: () => set(initialState)
 }))
