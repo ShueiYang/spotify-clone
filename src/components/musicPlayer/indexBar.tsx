@@ -20,22 +20,23 @@ export default function MusicPlayer() {
     currentIndex,
     isActive,
     isPlaying,
+    isExiting,
     playPause,
     setCurrentIndex,
+    setIsExiting,
     reset
   ] = usePlayerStore((state) => [
     state.currentSongs,
     state.currentIndex,
     state.isActive,
     state.isPlaying,
+    state.isExiting,
     state.playPause,
     state.setCurrentIndex,
+    state.setIsExiting,
     state.reset
   ])
   
-  // for exit animation
-  const [isExiting, setIsExiting] = useState(false);
-
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -54,7 +55,6 @@ export default function MusicPlayer() {
         setDuration(0)
         setSeekTime(0)
         setAppTime(0)
-        setIsExiting(false)
         reset();
       }, 500)
       return () => clearTimeout(exitTimer)

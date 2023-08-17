@@ -9,10 +9,11 @@ function useOnPlay(songs: Song[]) {
   const authModal = useAuthModal();
   const user = useUserStore((state) => state.user)
   
-  const [setCurrentSongs, setIsActive, setCurrentIndex] = usePlayerStore((state) => [
+  const [setCurrentSongs, setIsActive, setCurrentIndex, setActiveSongId ] = usePlayerStore((state) => [
     state.setCurrentSongs,
     state.setIsActive,
-    state.setCurrentIndex
+    state.setCurrentIndex,
+    state.setActiveSongId,
   ])
 
   const onPlay = (id: string) => {
@@ -23,6 +24,7 @@ function useOnPlay(songs: Song[]) {
     setCurrentSongs(songs)
     setIsActive(true)
     setCurrentIndex(index)
+    setActiveSongId(id)
   }
   return onPlay;
 }

@@ -4,25 +4,40 @@ import { useLoadImageUrl } from "@/hooks/useBucketStorage";
 import { Song } from "@/types/custom.types";
 import Image from "next/image";
 import PlayButton from "@/components/customButtons/PlayButton";
+import { usePlayerStore } from "@/hooks/usePlayerStore";
 
 
 interface SongItemProps {
   data: Song
-  onClick: (id: string) => void
+  onPlayClick: (id: string) => void
 }
 
 
 const SongItem: React.FC<SongItemProps> = ({
   data,
-  onClick,
+  onPlayClick,
 }) => {
+  // Zustand custom hook
+  const [isPlaying, activeSongId, setIsExiting] = usePlayerStore((state) => [
+    state.isPlaying,
+    state.activeSongId,
+    state.setIsExiting
+  ])
+  // load Song Image from storage
   const imagePath = useLoadImageUrl(data);
 
+  // handle action depending if a song is playing or not
+  function handleClickAction() {
+    if(!isPlaying || (isPlaying && data.id !== activeSongId)) {
+      return onPlayClick(data.id as string)
+    } else {
+      return setIsExiting(true)
+    }
+  }
+
   return (
-    <div
-      onClick={() => onClick(data.id as string)}
-      className="relative group flex flex-col items-center justify-center rounded-md gap-x-4 
-        overflow-hidden bg-neutral-400/5 cursor-pointer p-3 transition hover:bg-neutral-400/10"
+    <div className="relative group flex flex-col items-center justify-center rounded-md gap-x-4 
+      overflow-hidden bg-neutral-400/5 p-3 transition hover:bg-neutral-400/10"
     >
       <div className="relative aspect-square w-full h-auto rounded-md overflow-hidden">
         <Image 
@@ -43,8 +58,14 @@ const SongItem: React.FC<SongItemProps> = ({
           </p>
         </div>
       </div>
-      <div className="absolute bottom-24 right-5">
-        <PlayButton className="translate-y-1/4 group-hover:translate-y-0"/>
+      <div 
+        className="absolute bottom-24 right-5"
+        onClick={handleClickAction}
+      >
+        <PlayButton 
+          songId={data.id as string}
+          className="translate-y-1/4 group-hover:translate-y-0"
+        />
       </div>
     </div>
   )

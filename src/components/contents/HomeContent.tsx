@@ -27,7 +27,7 @@ export default function HomeContent({
           <SongItem
             key={song.id}
             data={song}
-            onClick={() => onPlay(song.id as string)}
+            onPlayClick={() => onPlay(song.id as string)}
           />
         )
       })}

@@ -57,13 +57,15 @@ const Header = ({ session, className }: HeaderProps) => {
       <div className="hidden md:flex gap-x-2 items-center">
         <button 
           // onClick={()=> router.back()}
-          className="flex items-center justify-center rounded-full bg-black hover:opacity-75 transition"
+          className="flex items-center justify-center rounded-full bg-black hover:opacity-75 transition disabled:pointer-events-none disabled:opacity-50"
+          disabled={false}
         >
           <RxCaretLeft size={35} className="text-white"/>
         </button>
         <button
           // onClick={()=> router.forward()}
-          className="flex items-center justify-center rounded-full bg-black hover:opacity-75 transition"
+          className="flex items-center justify-center rounded-full bg-black hover:opacity-75 transition disabled:pointer-events-none disabled:opacity-50"
+          disabled={false}
         >
           <RxCaretRight size={35} className="text-white"/>
         </button>
