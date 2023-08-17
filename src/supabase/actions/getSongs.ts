@@ -8,7 +8,7 @@ export default async function getSongs(): Promise<Song[]> {
   const { data, error } = await supabase
     .from("songs")
     .select("*")
-    .order("created_at", { ascending: false })
+    .order("created_at", { ascending: true })
   
     if(error) {
       console.error(error)

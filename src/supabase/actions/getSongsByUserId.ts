@@ -15,7 +15,7 @@ export default async function getSongsByUserId(): Promise<Song[]> {
     .from("songs")
     .select("*")
     .eq("user_id", session.user.id)
-    .order("created_at", { ascending: false })
+    .order("created_at", { ascending: true })
 
   if(error) {
     console.error(error)
