@@ -13,14 +13,12 @@ import { useAuthModal } from "@/hooks/useAuthModal";
 const AuthModal = () => {
   const router = useRouter();
   const supabase = createClientSupabaseClient();
-  // const supabase = createClient(
-  //   `${process.env.NEXT_PUBLIC_SUPABASE_URL}`,
-  //   `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
-  // )
   // Zustand custom hook
-  const isOpen = useAuthModal((state) => state.isOpen)
-  const onClose = useAuthModal((state) => state.onClose)
-  const view = useAuthModal((state) => state.view)
+  const [isOpen, onClose, view] = useAuthModal((state) => [
+    state.isOpen,
+    state.onClose,
+    state.view
+  ])
  
   
   useEffect(() => {
