@@ -18,9 +18,10 @@ const SongItem: React.FC<SongItemProps> = ({
   onPlayClick,
 }) => {
   // Zustand custom hook
-  const [isPlaying, activeSongId, setIsExiting] = usePlayerStore((state) => [
+  const [isPlaying, activeSongId, playPause, setIsExiting] = usePlayerStore((state) => [
     state.isPlaying,
     state.activeSongId,
+    state.playPause,
     state.setIsExiting
   ])
   // load Song Image from storage
@@ -29,6 +30,7 @@ const SongItem: React.FC<SongItemProps> = ({
   // handle action depending if a song is playing or not
   function handleClickAction() {
     if(!isPlaying || (isPlaying && data.id !== activeSongId)) {
+      playPause(true)
       return onPlayClick(data.id as string)
     } else {
       return setIsExiting(true)

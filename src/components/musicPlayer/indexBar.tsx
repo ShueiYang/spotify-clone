@@ -64,6 +64,7 @@ export default function MusicPlayer() {
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if(currentSongs.length) {
+      setSeekTime(0)
       playPause(true)
     }
   }, [currentIndex, currentSongs.length]);
@@ -81,7 +82,6 @@ export default function MusicPlayer() {
 
   function handleNextSong() {
     playPause(false)
-    setSeekTime(0)
 
     if(!shuffle) {
       const nextIndex = (currentIndex + 1) % currentSongs.length;
@@ -94,7 +94,6 @@ export default function MusicPlayer() {
 
   function handlePrevSong() {
     playPause(false)
-    setSeekTime(0)
 
     if(currentIndex === 0) {
       setCurrentIndex(currentSongs.length - 1)
