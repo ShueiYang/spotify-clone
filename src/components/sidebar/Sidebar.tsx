@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   }
 
   return (
-    <div className="hidden md:flex flex-col gap-y-2 w-[300px] h-full p-2">
+    <div className="hidden md:flex flex-col gap-y-2 w-[300px] h-full p-2 pb-0">
       <Box>
         <div className="flex flex-col px-5 py-4 gap-y-3">
           {navigationItems.map(item => (
@@ -62,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       </Box>
       <Box className="flex flex-col justify-between h-full">
         <SongLibrary userSongs={userSongs} />
-        <div className="sticky bottom-0 flex flex-col items-center p-6 pt-4 bg-neutral-900">
+        <div className="sticky bottom-0 flex flex-col items-center p-6 pt-4 bg-neutral-900 rounded-tl-lg border-b-8 border-black">
           <p className="text-center text-neutral-200">
             {subscription 
               ? `Welcome to ${subscription.prices?.products?.name} !`
