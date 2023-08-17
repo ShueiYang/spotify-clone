@@ -1,41 +1,37 @@
 import { Song } from "@/types/custom.types"
 import { create } from "zustand"
 
-interface PlayerStore {
+// define types for state values and actions separately
+type PlayerState = {
   currentSongs: Song[]
   currentIndex: number
   isActive: boolean
   isPlaying: boolean
-  // activeSong: string
-  // activeId?: string
- 
-  // setActiveSong: (id: string) => void
+}
+type PlayerAction = {
   setCurrentSongs: (ids: Song[]) => void
   playPause: (state: boolean) => void
-
   setIsActive: (state: boolean) => void
-  // setActiveId: (id: string) => void
   setCurrentIndex: (index: number) => void
   reset: () => void
 }
 
+// define the initial state
+  const initialState : PlayerState = {
+    currentSongs: [],
+    currentIndex: 0,
+    isActive:false,
+    isPlaying: false,
+  }
 
-export const usePlayerStore = create<PlayerStore>((set) => ({
-  currentSongs: [],
-  currentIndex: 0,
-  isActive:false,
-  isPlaying: false,
-  // activeSong: "",
-  // activeId: undefined,
+// create Store
+export const usePlayerStore = create<PlayerState & PlayerAction>((set) => ({
+  ...initialState,
 
-  // setActiveSong: (songUrl) => set({activeSong: songUrl}),
   setCurrentSongs: (songsArray) => set({currentSongs: songsArray}),
   playPause: (state) => set({isPlaying: state}),
-
   setIsActive: (state) => set({isActive: state}),
-  // setActiveId: (id) => set({activeId: id}),
   setCurrentIndex: (index) => set({currentIndex: index}),
-  reset: () => set({currentSongs: []})
-
-  // setId: (id) => set({activeId: id}),
+  // reset all state
+  reset: () => set(initialState)
 }))

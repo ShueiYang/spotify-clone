@@ -14,16 +14,24 @@ export type InputEvent = React.ChangeEvent<HTMLInputElement>
 export type AudioEvent = React.SyntheticEvent<HTMLAudioElement> 
 
 export default function MusicPlayer() {
-
-  const currentSongs = usePlayerStore((state) => state.currentSongs)
-  const currentIndex = usePlayerStore((state) => state.currentIndex)
-  const isActive = usePlayerStore((state) => state.isActive)
-  const isPlaying = usePlayerStore((state) => state.isPlaying)
-
-  const setIsActive = usePlayerStore((state) => state.setIsActive)
-  const playPause = usePlayerStore((state) => state.playPause)
-  const setCurrentIndex = usePlayerStore((state) => state.setCurrentIndex)
-  const reset = usePlayerStore((state) => state.reset)
+  // Zustand custom hook
+  const [
+    currentSongs,
+    currentIndex,
+    isActive,
+    isPlaying,
+    playPause,
+    setCurrentIndex,
+    reset
+  ] = usePlayerStore((state) => [
+    state.currentSongs,
+    state.currentIndex,
+    state.isActive,
+    state.isPlaying,
+    state.playPause,
+    state.setCurrentIndex,
+    state.reset
+  ])
   
   // for exit animation
   const [isExiting, setIsExiting] = useState(false);
@@ -35,8 +43,9 @@ export default function MusicPlayer() {
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   
-  const song = currentSongs[currentIndex]
-  const songUrl = useLoadSongUrl(song)
+  const song = currentSongs[currentIndex];
+  // upload the songUrl fron the storage in order to play the song
+  const songUrl = useLoadSongUrl(song);
  
   useEffect(() => {
     // trigger exit animation before removing the MusicPlayer component
@@ -45,20 +54,19 @@ export default function MusicPlayer() {
         setDuration(0)
         setSeekTime(0)
         setAppTime(0)
-        setIsActive(false)
         setIsExiting(false)
         reset();
       }, 500)
       return () => clearTimeout(exitTimer)
     }
-  }, [isExiting, setIsActive, reset])
+  }, [isExiting, reset])
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if(currentSongs.length) {
       playPause(true)
     }
-  }, [currentIndex]);
+  }, [currentIndex, currentSongs.length]);
 
 
   function handlePlayPause() {
