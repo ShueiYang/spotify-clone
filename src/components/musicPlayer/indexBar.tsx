@@ -23,6 +23,7 @@ export default function MusicPlayer() {
     isExiting,
     playPause,
     setCurrentIndex,
+    setActiveSongId,
     setIsExiting,
     reset
   ] = usePlayerStore((state) => [
@@ -33,6 +34,7 @@ export default function MusicPlayer() {
     state.isExiting,
     state.playPause,
     state.setCurrentIndex,
+    state.setActiveSongId,
     state.setIsExiting,
     state.reset
   ])
@@ -66,8 +68,9 @@ export default function MusicPlayer() {
     if(currentSongs.length) {
       setSeekTime(0)
       playPause(true)
+      setActiveSongId(song.id as string)
     }
-  }, [currentIndex, currentSongs.length]);
+  }, [currentIndex, currentSongs.length, song?.id, setActiveSongId]);
 
 
   function handlePlayPause() {
