@@ -29,4 +29,4 @@ Restrictions:
 
 <Br />
 
-![screenshot](https://res.cloudinary.com/deljfm98p/image/upload/v1692350994/api/portfolio/Spotifyclone/preview.jpg)
+![screenshot](https://res.cloudinary.com/deljfm98p/image/upload/v1692358195/api/portfolio/Spotifyclone/preview.jpg)
