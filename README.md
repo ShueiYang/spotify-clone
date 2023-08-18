@@ -26,3 +26,7 @@ Features:
 Restrictions:
 
 * For personal use so other user cannot Update or Delete Songs in the public lists even after uploading on their own.
+
+<Br />
+
+![screenshot](https://res.cloudinary.com/deljfm98p/image/upload/v1692350994/api/portfolio/Spotifyclone/preview.jpg)
