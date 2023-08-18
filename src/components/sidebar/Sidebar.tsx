@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   }
 
   return (
-    <div className="hidden md:flex flex-col gap-y-2 w-[300px] h-full p-2 pb-0">
+    <div className="hidden md:flex flex-col gap-y-2 w-[300px] h-full max-h-screen p-2 pb-0">
       <Box>
         <div className="flex flex-col px-5 py-4 gap-y-3">
           {navigationItems.map(item => (
