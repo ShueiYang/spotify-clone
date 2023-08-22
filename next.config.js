@@ -5,6 +5,7 @@ const nextConfig = {
       "ynrdtvlapgrwavoscsem.supabase.co"
     ]
   },
+  // output: "standalone",
 }
 
 module.exports = nextConfig
