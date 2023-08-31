@@ -14,7 +14,7 @@ export default async function Home() {
   const songs = await getSongs();
   
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col w-full">
       <Header
         className="bg-gradient-to-b from-teal-700 to-teal-700/80" 
         session={session} 

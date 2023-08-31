@@ -22,7 +22,7 @@ export default async function SearchPage({searchParams}: SearchProps) {
   const song = await getSongsByTitle(searchParams.title);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col w-full">
       <Header 
         className="bg-neutral-900"
         session={session}
