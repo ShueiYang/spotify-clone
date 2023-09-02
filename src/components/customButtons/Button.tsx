@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-
+// less verbose way to write this ButtonProps instead of React.ButtonHTMLAttributes<HTMLButtonElement>
+interface ButtonProps extends React.ComponentProps<"button"> {}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   className,

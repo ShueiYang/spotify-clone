@@ -1,13 +1,12 @@
 import { UploadForm } from "@/types/custom.types";
-import { InputHTMLAttributes, forwardRef } from "react";
+import { forwardRef } from "react";
 import { FieldErrors } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+// less verbose way to write this InputProps instead of React.InputHTMLAttributes<HTMLInputElement>
+interface InputProps extends React.ComponentProps<"input">{
   error?: FieldErrors<UploadForm>
 }
-
 
 const InputForm = forwardRef<HTMLInputElement, InputProps>(({
   className,
