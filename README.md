@@ -1,12 +1,12 @@
 # Spotify-clone project
 
-Spotify-clone using Next.js 13 App Router.
+Spotify-clone using Next.js 14 App Router.
 
 This Project was inspired by Antonio's tutorial! A Spotify clone that we can listen to our favorite music! I didn't use the Spotify API since this work is also for personal use. I also made some improvements in functionality, a better music bar interface, removed some unnecessary package and using native audio html (So it work on mobile web).
 
 Stacks use for this project:
 
-- Next.js 13 app directory
+- Next.js 14 app directory
 - TailwindCss and Radix UI for modal/tooltip
 - Supabase
 - Stripe
