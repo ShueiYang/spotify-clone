@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { InputEvent } from "./indexBar";
 import {
   BsFillVolumeUpFill,
@@ -15,7 +15,7 @@ interface VolumeBarProps {
   setVolume: Dispatch<SetStateAction<number>>;
 }
 
-const VolumeBar: FC<VolumeBarProps> = ({
+const VolumeBar: React.FC<VolumeBarProps> = ({
   value,
   min,
   max,

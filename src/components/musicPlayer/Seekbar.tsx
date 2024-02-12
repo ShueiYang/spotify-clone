@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { InputEvent } from "./indexBar";
 
 interface SeekbarProps {
@@ -10,7 +10,7 @@ interface SeekbarProps {
   appTime: number;
 }
 
-const Seekbar: FC<SeekbarProps> = ({
+const Seekbar: React.FC<SeekbarProps> = ({
   value,
   min,
   max,

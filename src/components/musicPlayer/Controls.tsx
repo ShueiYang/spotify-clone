@@ -1,5 +1,5 @@
 import { Song } from "@/types/custom.types";
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { RiSkipBackFill, RiSkipForwardFill } from "react-icons/ri";
 import { IoMdPause, IoMdPlay } from "react-icons/io";
 import { RxShuffle, RxUpdate } from "react-icons/rx";
@@ -17,7 +17,7 @@ interface ControlProps {
   handleNextSong: () => void;
 }
 
-const Controls: FC<ControlProps> = ({
+const Controls: React.FC<ControlProps> = ({
   isPlaying,
   repeat,
   setRepeat,
@@ -38,7 +38,7 @@ const Controls: FC<ControlProps> = ({
           className="hidden cursor-pointer sm:block"
         />
       </TooltipMenu>
-      {currentSongs?.length && (
+      {currentSongs?.length > 0 && (
         <TooltipMenu content="Previous">
           <RiSkipBackFill
             size={29}
@@ -67,7 +67,7 @@ const Controls: FC<ControlProps> = ({
           />
         </TooltipMenu>
       )}
-      {currentSongs?.length && (
+      {currentSongs?.length > 0 && (
         <TooltipMenu content="Next">
           <RiSkipForwardFill
             size={29}
