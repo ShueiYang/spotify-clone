@@ -1,55 +1,58 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { InputEvent } from "./indexBar";
-import { BsFillVolumeUpFill, BsVolumeDownFill, BsFillVolumeMuteFill } from "react-icons/bs";
+import {
+  BsFillVolumeUpFill,
+  BsVolumeDownFill,
+  BsFillVolumeMuteFill,
+} from "react-icons/bs";
 import TooltipMenu from "@/components/Tooltip";
 
 interface VolumeBarProps {
-  value: number
-  min: number
-  max: number
-  onChange: (event: InputEvent) => void
-  setVolume: Dispatch<SetStateAction<number>>
+  value: number;
+  min: number;
+  max: number;
+  onChange: (event: InputEvent) => void;
+  setVolume: Dispatch<SetStateAction<number>>;
 }
 
-
-const VolumeBar: FC<VolumeBarProps> = ({ 
-  value, 
-  min, 
-  max, 
-  onChange, 
-  setVolume 
+const VolumeBar: FC<VolumeBarProps> = ({
+  value,
+  min,
+  max,
+  onChange,
+  setVolume,
 }) => (
-  <div className="flex sm:hidden lg:flex flex-1 items-center justify-end mt-2 lg:mt-0">
-    {value <= 1 && value > 0.5 &&
+  <div className="mt-2 flex flex-1 items-center justify-end sm:hidden lg:mt-0 lg:flex">
+    {value <= 1 && value > 0.5 && (
       <TooltipMenu content="Mute">
-        <BsFillVolumeUpFill 
-          size={25} 
-          color="#FFF" 
-          onClick={() => setVolume(0)} 
+        <BsFillVolumeUpFill
+          size={25}
+          color="#FFF"
+          onClick={() => setVolume(0)}
           className="cursor-pointer"
         />
-      </TooltipMenu> 
-    }
-    {value <= 0.5 && value > 0 &&
+      </TooltipMenu>
+    )}
+    {value <= 0.5 && value > 0 && (
       <TooltipMenu content="Mute">
-        <BsVolumeDownFill 
-          size={25} 
-          color="#FFF" 
+        <BsVolumeDownFill
+          size={25}
+          color="#FFF"
           onClick={() => setVolume(0)}
-          className="cursor-pointer" 
+          className="cursor-pointer"
         />
       </TooltipMenu>
-    }
-    {value === 0 && 
+    )}
+    {value === 0 && (
       <TooltipMenu content="Unmute">
-        <BsFillVolumeMuteFill 
-          size={25} 
-          color="#FFF" 
+        <BsFillVolumeMuteFill
+          size={25}
+          color="#FFF"
           onClick={() => setVolume(0.2)}
           className="cursor-pointer"
         />
       </TooltipMenu>
-    }
+    )}
     <input
       type="range"
       step="any"
@@ -57,7 +60,7 @@ const VolumeBar: FC<VolumeBarProps> = ({
       min={min}
       max={max}
       onChange={onChange}
-      className="2xl:w-40 lg:w-32 md:w-32 h-1 ml-2 firefox-height"
+      className="firefox-height ml-2 h-1 md:w-32 lg:w-32 2xl:w-40"
     />
   </div>
 );

@@ -1,25 +1,26 @@
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
-import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-import { stripe } from "@/libs/stripe"
-import { getURL } from "@/libs/helpers"
-import { createOrRetrieveCustomer } from "@/supabase/supabaseAdmin"
-import { Database } from "@/supabase/database.types"
-
+import { stripe } from "@/libs/stripe";
+import { getURL } from "@/libs/helpers";
+import { createOrRetrieveCustomer } from "@/supabase/supabaseAdmin";
+import { Database } from "@/supabase/database.types";
 
 export async function POST(request: Request) {
   try {
     const { price, quantity = 1, metadata = {} } = await request.json();
 
-    const supabase = createRouteHandlerClient<Database>({ cookies })
+    const supabase = createRouteHandlerClient<Database>({ cookies });
 
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     const customer = await createOrRetrieveCustomer({
       uuid: user?.id || "",
       email: user?.email || "",
-    })
+    });
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -28,23 +29,22 @@ export async function POST(request: Request) {
       line_items: [
         {
           price: price.id,
-          quantity
-        }
+          quantity,
+        },
       ],
       mode: "subscription",
       allow_promotion_codes: true,
       subscription_data: {
         trial_from_plan: true,
-        metadata
+        metadata,
       },
       success_url: `${getURL()}/account`,
-      cancel_url: `${getURL()}/`
-    })
-    
-    return NextResponse.json({ sessionId: session.id })
+      cancel_url: `${getURL()}/`,
+    });
 
+    return NextResponse.json({ sessionId: session.id });
   } catch (err: unknown) {
-    console.error(err)
-    return new Response("Internal Server Error", {status: 500})
+    console.error(err);
+    return new Response("Internal Server Error", { status: 500 });
   }
-};
+}

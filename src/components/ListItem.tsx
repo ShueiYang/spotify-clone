@@ -1,41 +1,37 @@
-"use client"
+"use client";
 
-import { useAuthModal } from "@/hooks/useAuthModal"
-import { useUserStore } from "@/hooks/useUserStore"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { FaPlay } from "react-icons/fa"
+import { useAuthModal } from "@/hooks/useAuthModal";
+import { useUserStore } from "@/hooks/useUserStore";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FaPlay } from "react-icons/fa";
 
 interface ListItemProps {
-  image: string
-  name: string
-  href: string
+  image: string;
+  name: string;
+  href: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({
-  image,
-  name,
-  href
-}) => {
+const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   const router = useRouter();
-  const onOpen = useAuthModal((state) => state.onOpen)
-  const user = useUserStore((state) => state.user)
+  const onOpen = useAuthModal((state) => state.onOpen);
+  const user = useUserStore((state) => state.user);
 
-  function handleAuth () {
-    if(!user) {
+  function handleAuth() {
+    if (!user) {
       return onOpen();
     }
-    router.push(href)
+    router.push(href);
   }
 
   return (
-    <button 
+    <button
       onClick={handleAuth}
-      className="relative group flex items-center rounded-md overflow-hidden gap-x-4
-     bg-neutral-100/10 hover:bg-neutral-100/20 transition pr-4 min-w-[240px]"
+      className="group relative flex min-w-[240px] items-center gap-x-4 overflow-hidden
+     rounded-md bg-neutral-100/10 pr-4 transition hover:bg-neutral-100/20"
     >
-      <div className="relative min-w-[64px] min-h-[64px]">
-        <Image 
+      <div className="relative min-h-[64px] min-w-[64px]">
+        <Image
           className="object-cover"
           src={image}
           alt="favorite icon"
@@ -43,14 +39,12 @@ const ListItem: React.FC<ListItemProps> = ({
           sizes="(max-width: 64px) 100vw"
         />
       </div>
-      <p className="font-medium truncate py-5">
-        {name}
-      </p>
+      <p className="truncate py-5 font-medium">{name}</p>
       <div className="play-btn absolute right-5 justify-center">
         <FaPlay className="text-black" />
       </div>
     </button>
-  )
-}
+  );
+};
 
 export default ListItem;

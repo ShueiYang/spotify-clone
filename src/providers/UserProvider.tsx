@@ -1,13 +1,9 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { UserStore, useUserStore } from "@/hooks/useUserStore"
+import { useEffect } from "react";
+import { UserStore, useUserStore } from "@/hooks/useUserStore";
 
-
-export default function StoreInitializer({
-  ...props
-}: Partial<UserStore>
-) {
+export default function StoreInitializer({ ...props }: Partial<UserStore>) {
   // const initialized = useRef(false);
   // if this ref is not initialized then we set the store.
   // if(!initialized.current) {
@@ -15,7 +11,7 @@ export default function StoreInitializer({
   //   initialized.current = true;
   // }
   useEffect(() => {
-    useUserStore.setState(props)
+    useUserStore.setState(props);
   }, [props]);
 
   return null;

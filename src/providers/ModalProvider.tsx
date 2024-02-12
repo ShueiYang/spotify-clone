@@ -1,24 +1,23 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import AuthModal from "@/components/modals/AuthModal";
 import UploadModal from "@/components/modals/UploadModal";
 import SubscribeModal from "@/components/modals/SubscribeModal";
 import { ProductWithPrice } from "@/types/custom.types";
 
-
 export default function ModalProvider({
-  products 
+  products,
 }: {
-  products: ProductWithPrice[]
+  products: ProductWithPrice[];
 }) {
-  const [ isMounted, setIsMounted ] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  },[])
+  }, []);
 
-  if(!isMounted) {
+  if (!isMounted) {
     return null;
   }
 

@@ -1,13 +1,11 @@
 import { Song } from "@/types/custom.types";
-import { Session } from "@supabase/auth-helpers-nextjs"
+import { Session } from "@supabase/auth-helpers-nextjs";
 import { createServerSupabaseClient } from "@/supabase/server";
 
-
 export default async function getFavoriteSongs(
-  session: Session | null
+  session: Session | null,
 ): Promise<Song[]> {
-
-  if(!session) {
+  if (!session) {
     return [];
   }
   const supabase = createServerSupabaseClient();
@@ -15,15 +13,15 @@ export default async function getFavoriteSongs(
     .from("favorite_songs")
     .select("*, songs(*)")
     .eq("user_id", session.user.id)
-    .order("created_at", { ascending: false })
-  
-    if(error) {
-      console.error(error)
-    }
-    if(!data) {
-      return [];
-    }
-    return data.map(item => ({
-      ...item.songs
-    })) as Song[];
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+  }
+  if (!data) {
+    return [];
+  }
+  return data.map((item) => ({
+    ...item.songs,
+  })) as Song[];
 }

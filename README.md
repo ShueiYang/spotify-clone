@@ -6,26 +6,26 @@ This Project was inspired by Antonio's tutorial! A Spotify clone that we can lis
 
 Stacks use for this project:
 
-* Next.js 13 app directory
-* TailwindCss and Radix UI for modal/tooltip
-* Supabase 
-* Stripe
+- Next.js 13 app directory
+- TailwindCss and Radix UI for modal/tooltip
+- Supabase
+- Stripe
 
 Some other Tools
 
-* TypeScript 
-* Zustand for state management.
+- TypeScript
+- Zustand for state management.
 
 Features:
 
-* OAuth integration with Supabase 
-* User can upload Song and image once signed in.
-* User can "liked" a list of favorite song in order play the select list in the liked section page
-* Stripe membership integration in order to subscribe as a Premium or All-access user. (Only in test-mode to learn the functionality) 
+- OAuth integration with Supabase
+- User can upload Song and image once signed in.
+- User can "liked" a list of favorite song in order play the select list in the liked section page
+- Stripe membership integration in order to subscribe as a Premium or All-access user. (Only in test-mode to learn the functionality)
 
 Restrictions:
 
-* For personal use so other user cannot Update or Delete Songs in the public lists even after uploading on their own.
+- For personal use so other user cannot Update or Delete Songs in the public lists even after uploading on their own.
 
 <Br />
 

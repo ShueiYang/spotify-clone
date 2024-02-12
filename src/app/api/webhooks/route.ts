@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 
 import { stripe } from "@/libs/stripe";
-import { 
+import {
   upsertProductRecord,
   upsertPriceRecord,
   manageSubscriptionStatusChange,
@@ -17,32 +17,31 @@ const relevantEvents = new Set([
   "checkout.session.completed",
   "customer.subscription.created",
   "customer.subscription.updated",
-  "customer.subscription.deleted"
+  "customer.subscription.deleted",
 ]);
-
 
 export async function POST(request: Request) {
   try {
     const body = await request.text();
-    const sig = headers().get("Stripe-Signature")
+    const sig = headers().get("Stripe-Signature");
 
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
     let event: Stripe.Event;
 
-    if(!sig || !webhookSecret) {
+    if (!sig || !webhookSecret) {
       throw { status: 400, message: "Missing parameter" };
     }
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
 
-    if(relevantEvents.has(event.type)) {
-      switch(event.type) {
+    if (relevantEvents.has(event.type)) {
+      switch (event.type) {
         case "product.created":
         case "product.updated":
-          await upsertProductRecord(event.data.object as Stripe.Product)
+          await upsertProductRecord(event.data.object as Stripe.Product);
           break;
         case "price.created":
         case "price.updated":
-          await upsertPriceRecord(event.data.object as Stripe.Price)
+          await upsertPriceRecord(event.data.object as Stripe.Price);
           break;
         case "customer.subscription.created":
         case "customer.subscription.updated":
@@ -51,33 +50,34 @@ export async function POST(request: Request) {
           await manageSubscriptionStatusChange(
             subscription.id,
             subscription.customer as string,
-            event.type === "customer.subscription.created"
-          )
+            event.type === "customer.subscription.created",
+          );
           break;
         case "checkout.session.completed":
           const checkoutSession = event.data.object as Stripe.Checkout.Session;
-          if(checkoutSession.mode === "subscription") {
+          if (checkoutSession.mode === "subscription") {
             const subscriptionId = checkoutSession.subscription;
             await manageSubscriptionStatusChange(
               subscriptionId as string,
               checkoutSession.customer as string,
-              true
+              true,
             );
           }
           break;
-        default: 
-          throw { status: 400, message: "Unhandled relevant event!" }
+        default:
+          throw { status: 400, message: "Unhandled relevant event!" };
       }
     }
 
-    return NextResponse.json({ received: true }, {status: 200})
-    
+    return NextResponse.json({ received: true }, { status: 200 });
   } catch (err: unknown) {
-    console.error(err)
-    if(err instanceof Error) {
-      return NextResponse.json(`Webhook Error: ${err.message}`, {status: 400})
+    console.error(err);
+    if (err instanceof Error) {
+      return NextResponse.json(`Webhook Error: ${err.message}`, {
+        status: 400,
+      });
     } else {
-      return new Response("Internal Server Error", {status: 500})
+      return new Response("Internal Server Error", { status: 500 });
     }
   }
-};
+}

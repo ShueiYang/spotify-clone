@@ -4,19 +4,19 @@
 
 @layer components {
   .play-btn {
-    @apply flex items-center bg-green-500 p-4 transition opacity-0 rounded-full drop-shadow-md group-hover:opacity-100 hover:scale-110
+    @apply flex items-center rounded-full bg-green-500 p-4 opacity-0 drop-shadow-md transition hover:scale-110 group-hover:opacity-100;
   }
   .bg-gradient {
-    @apply bg-gradient-to-b from-teal-700/80 to-neutral-900/95 via-neutral-900 via-20%
+    @apply bg-gradient-to-b from-teal-700/80 via-neutral-900 via-20% to-neutral-900/95;
   }
   .bg-gradient-black {
-    @apply bg-gradient-to-b from-neutral-900 to-neutral-900/95
+    @apply bg-gradient-to-b from-neutral-900 to-neutral-900/95;
   }
   .section-container {
-    @apply flex-1 h-full px-2 md:pl-0 overflow-x-auto border-y-8 border-black
+    @apply h-full flex-1 overflow-x-auto border-y-8 border-black px-2 md:pl-0;
   }
   .item-link {
-    @apply text-neutral-400 hover:text-neutral-200 hover:underline underline-offset-2 pb-2 cursor-pointer
+    @apply cursor-pointer pb-2 text-neutral-400 underline-offset-2 hover:text-neutral-200 hover:underline;
   }
 
   .TooltipContent {
@@ -27,7 +27,9 @@
     line-height: 1;
     color: #fafafa;
     background-color: #0f766e;
-    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    box-shadow:
+      hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+      hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
     user-select: none;
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -46,7 +48,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes fadeOut {
     from {
       opacity: 1;
@@ -55,17 +57,17 @@
       opacity: 0;
     }
   }
-  
-  .DialogOverlay[data-state='open'],
-  .DialogContent[data-state='open'] {
+
+  .DialogOverlay[data-state="open"],
+  .DialogContent[data-state="open"] {
     animation: fadeIn 300ms ease-out;
   }
-  
-  .DialogOverlay[data-state='closed'],
-  .DialogContent[data-state='closed'] {
+
+  .DialogOverlay[data-state="closed"],
+  .DialogContent[data-state="closed"] {
     animation: fadeOut 300ms ease-in;
   }
-  
+
   /* Tooltip Animation */
   @keyframes slideUpAndFade {
     from {
@@ -77,7 +79,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slideRightAndFade {
     from {
       opacity: 0;
@@ -88,7 +90,7 @@
       transform: translateX(0);
     }
   }
-  
+
   @keyframes slideDownAndFade {
     from {
       opacity: 0;
@@ -99,7 +101,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slideLeftAndFade {
     from {
       opacity: 0;
@@ -110,17 +112,17 @@
       transform: translateX(0);
     }
   }
-  
-  .TooltipContent[data-state='delayed-open'][data-side='top'] {
+
+  .TooltipContent[data-state="delayed-open"][data-side="top"] {
     animation-name: slideDownAndFade;
   }
-  .TooltipContent[data-state='delayed-open'][data-side='right'] {
+  .TooltipContent[data-state="delayed-open"][data-side="right"] {
     animation-name: slideLeftAndFade;
   }
-  .TooltipContent[data-state='delayed-open'][data-side='bottom'] {
+  .TooltipContent[data-state="delayed-open"][data-side="bottom"] {
     animation-name: slideUpAndFade;
   }
-  .TooltipContent[data-state='delayed-open'][data-side='left'] {
+  .TooltipContent[data-state="delayed-open"][data-side="left"] {
     animation-name: slideRightAndFade;
   }
 }

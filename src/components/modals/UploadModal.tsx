@@ -1,6 +1,6 @@
 "use client";
 
-import uniqid from "uniqid"
+import uniqid from "uniqid";
 import { useRouter } from "next/navigation";
 import { createClientSupabaseClient } from "@/supabase/client";
 import { useForm } from "react-hook-form";
@@ -13,167 +13,144 @@ import InputForm from "@/components/customInputs/InputForm";
 import Button from "@/components/customButtons/Button";
 import { UploadForm } from "@/types/custom.types";
 
-
-
 const UploadModal = () => {
-
   const router = useRouter();
-  const isOpen = useUploadModal((state) => state.isOpen)
-  const onClose = useUploadModal((state) => state.onClose)
-  const user = useUserStore((state) => state.user)
- 
-  const { 
+  const isOpen = useUploadModal((state) => state.isOpen);
+  const onClose = useUploadModal((state) => state.onClose);
+  const user = useUserStore((state) => state.user);
+
+  const {
     register,
-    handleSubmit, 
-    reset, 
-    formState: {
-      errors,
-      isSubmitting
-    } 
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<UploadForm>({
     defaultValues: {
       author: "",
       title: "",
       song: null,
       image: null,
-    }
-  })
+    },
+  });
 
   function onChange(open: boolean) {
-    if(!open) {
+    if (!open) {
       reset();
       onClose();
     }
   }
-  
+
   async function onSubmit(values: UploadForm) {
     const supabase = createClientSupabaseClient();
     try {
-      const songFile = values.song?.[0]
-      const imageFile = values.image?.[0]
- 
-      if(!songFile || !imageFile || !user) {     
-        return toast.error("Missing parameter")
+      const songFile = values.song?.[0];
+      const imageFile = values.image?.[0];
+
+      if (!songFile || !imageFile || !user) {
+        return toast.error("Missing parameter");
       }
       const uniqueID = uniqid();
 
       // upload song
-      const { 
-        data: songData, 
-        error: songError,
-      } = await supabase.storage
+      const { data: songData, error: songError } = await supabase.storage
         .from("songs")
         .upload(`song-${values.title}-${uniqueID}`, songFile, {
           cacheControl: "3600",
-          upsert: false
+          upsert: false,
         });
-      
-      if(songError) {
-        return toast.error("Failed to upload song")
+
+      if (songError) {
+        return toast.error("Failed to upload song");
       }
 
       // upload image
-      const { 
-        data: imageData, 
-        error: imageError,
-      } = await supabase.storage
+      const { data: imageData, error: imageError } = await supabase.storage
         .from("images")
         .upload(`image-${values.title}-${uniqueID}`, imageFile, {
           cacheControl: "3600",
-          upsert: false
+          upsert: false,
         });
-      
-      if(imageError) {
-        return toast.error("Failed to upload image")
-      }
-      
-      const { error: supabaseError } = await supabase
-        .from("songs")
-        .insert({
-          user_id: user.id,
-          title: values.title,
-          author: values.author,
-          image_path: imageData.path,
-          song_path: songData.path
-        })
 
-      if(supabaseError) {
-        return toast.error(supabaseError.message)
+      if (imageError) {
+        return toast.error("Failed to upload image");
+      }
+
+      const { error: supabaseError } = await supabase.from("songs").insert({
+        user_id: user.id,
+        title: values.title,
+        author: values.author,
+        image_path: imageData.path,
+        song_path: songData.path,
+      });
+
+      if (supabaseError) {
+        return toast.error(supabaseError.message);
       }
 
       router.refresh();
-      toast.success("Song successfully created!")
+      toast.success("Song successfully created!");
       reset();
       onClose();
-
     } catch (err) {
-      console.error("ErrorSubmit", err)
-      toast.error("Something went wrong")
+      console.error("ErrorSubmit", err);
+      toast.error("Something went wrong");
     }
   }
-
 
   return (
     <Modal
       title="Add a song"
       description="Upload an MP3 file"
       isOpen={isOpen}
-      onChange={onChange}   
+      onChange={onChange}
     >
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col"
-      >
-        <InputForm 
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+        <InputForm
           id="title"
           disabled={isSubmitting}
-          {...register("title", {required: true})} 
+          {...register("title", { required: true })}
           placeholder="Song title"
           error={errors.title}
         />
-        <InputForm 
+        <InputForm
           id="author"
           disabled={isSubmitting}
-          {...register("author", {required: true})} 
+          {...register("author", { required: true })}
           placeholder="Song author"
           error={errors.author}
         />
         <div>
-          <div className="pb-1">
-            Select a song file
-          </div>
-          <InputForm 
+          <div className="pb-1">Select a song file</div>
+          <InputForm
             id="song"
             type="file"
             disabled={isSubmitting}
-            {...register("song", {required: true})} 
+            {...register("song", { required: true })}
             accept=".mp3"
             error={errors.song}
           />
         </div>
         <div>
-          <div className="pb-1">
-            Select an image
-          </div>
-          <InputForm 
+          <div className="pb-1">Select an image</div>
+          <InputForm
             id="image"
             type="file"
             disabled={isSubmitting}
-            {...register("image", {required: true})} 
+            {...register("image", { required: true })}
             accept="image/*"
             error={errors.image}
           />
         </div>
         <Button
           type="submit"
-          className="font-medium mt-2"
+          className="mt-2 font-medium"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Uploading..." : "Create"}
         </Button>
       </form>
     </Modal>
-  )
-}
+  );
+};
 
 export default UploadModal;

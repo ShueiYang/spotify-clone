@@ -1,9 +1,9 @@
-import { createServerSupabaseClient } from "@/supabase/server"
-import { ProductWithPrice } from "@/types/custom.types" 
+import { createServerSupabaseClient } from "@/supabase/server";
+import { ProductWithPrice } from "@/types/custom.types";
 
-
-export default async function getActiveProductsWithPrices(): Promise<ProductWithPrice[]> {
-
+export default async function getActiveProductsWithPrices(): Promise<
+  ProductWithPrice[]
+> {
   const supabase = createServerSupabaseClient();
   const { data, error } = await supabase
     .from("products")
@@ -11,13 +11,13 @@ export default async function getActiveProductsWithPrices(): Promise<ProductWith
     .eq("active", true)
     .eq("prices.active", true)
     .order("metadata->index")
-    .order("unit_amount", { foreignTable: "prices" })
-  
-    if(error) {
-      console.error(error)
-    }
-    if(!data) {
-      return [];
-    }
-    return data as ProductWithPrice[];
+    .order("unit_amount", { foreignTable: "prices" });
+
+  if (error) {
+    console.error(error);
+  }
+  if (!data) {
+    return [];
+  }
+  return data as ProductWithPrice[];
 }

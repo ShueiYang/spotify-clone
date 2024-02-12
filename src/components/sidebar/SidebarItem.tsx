@@ -3,34 +3,31 @@ import { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
 
 interface SidebarItemProps {
-  label: string
-  href: string
-  active?: boolean
-  icon: IconType
+  label: string;
+  href: string;
+  active?: boolean;
+  icon: IconType;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
   label,
   href,
   active,
-  icon: Icon
+  icon: Icon,
 }) => {
-
   return (
     <Link
       href={href}
-      className={twMerge(`flex flex-row items-center w-full h-auto gap-x-4 font-medium
-        cursor-pointer hover:text-white transition text-neutral-400 py-1`,
-        active && "text-white"
-      
+      className={twMerge(
+        `flex h-auto w-full cursor-pointer flex-row items-center gap-x-4
+        py-1 font-medium text-neutral-400 transition hover:text-white`,
+        active && "text-white",
       )}
     >
       <Icon size={30} />
-      <span className="truncate w-full">
-        {label}
-      </span>
+      <span className="w-full truncate">{label}</span>
     </Link>
-  )
-}
+  );
+};
 
 export default SidebarItem;

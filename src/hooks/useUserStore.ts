@@ -1,13 +1,12 @@
-import { User } from "@supabase/auth-helpers-nextjs"
-import { Subscription, UserDetails } from "@/types/custom.types"
-import { create } from "zustand"
+import { User } from "@supabase/auth-helpers-nextjs";
+import { Subscription, UserDetails } from "@/types/custom.types";
+import { create } from "zustand";
 
 export interface UserStore {
-  user: User | null
-  userDetails: UserDetails | null
-  subscription: Subscription | null 
+  user: User | null;
+  userDetails: UserDetails | null;
+  subscription: Subscription | null;
 }
-
 
 export const useUserStore = create<UserStore>((set) => ({
   user: null,
