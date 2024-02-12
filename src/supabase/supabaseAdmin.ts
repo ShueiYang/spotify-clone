@@ -106,8 +106,11 @@ const copyBillingDetailsToCustomer = async (
 
   if (!name || !phone || !address) return;
 
-  // @ts-ignore
-  await stripe.customers.update(customer, { name, phone, address });
+  await stripe.customers.update(customer, {
+    name,
+    phone,
+    address,
+  } as Stripe.CustomerUpdateParams);
 
   const { error } = await supabaseAdmin
     .from("users")
@@ -147,11 +150,9 @@ const manageSubscriptionStatusChange = async (
       id: subscription.id,
       user_id: uuid,
       metadata: subscription.metadata,
-      // @ts-ignore
       status: subscription.status,
       price_id: subscription.items.data[0].price.id,
-      // @ts-ignore
-      quantity: subscription.quantity,
+      quantity: subscription.items.data[0].quantity,
       cancel_at_period_end: subscription.cancel_at_period_end,
       cancel_at: subscription.cancel_at
         ? toDateTime(subscription.cancel_at).toISOString()

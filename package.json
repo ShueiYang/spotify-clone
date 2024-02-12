@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
@@ -19,7 +20,7 @@
     "@types/node": "20.11.17",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
-    "eslint": "8.46.0",
+    "eslint": "^8.56.0",
     "eslint-config-next": "13.4.12",
     "next": "^13.5.6",
     "query-string": "^8.2.0",
@@ -38,8 +39,13 @@
   },
   "devDependencies": {
     "@types/uniqid": "^5.3.4",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.17",
     "encoding": "^0.1.13",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
     "postcss": "^8.4.35",
     "prettier": "3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",

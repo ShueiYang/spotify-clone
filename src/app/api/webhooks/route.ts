@@ -26,12 +26,12 @@ export async function POST(request: Request) {
     const sig = headers().get("Stripe-Signature");
 
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    let event: Stripe.Event;
 
     if (!sig || !webhookSecret) {
       throw { status: 400, message: "Missing parameter" };
     }
-    event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+
+    const event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
 
     if (relevantEvents.has(event.type)) {
       switch (event.type) {
@@ -46,22 +46,27 @@ export async function POST(request: Request) {
         case "customer.subscription.created":
         case "customer.subscription.updated":
         case "customer.subscription.deleted":
-          const subscription = event.data.object as Stripe.Subscription;
-          await manageSubscriptionStatusChange(
-            subscription.id,
-            subscription.customer as string,
-            event.type === "customer.subscription.created",
-          );
+          {
+            const subscription = event.data.object as Stripe.Subscription;
+            await manageSubscriptionStatusChange(
+              subscription.id,
+              subscription.customer as string,
+              event.type === "customer.subscription.created",
+            );
+          }
           break;
         case "checkout.session.completed":
-          const checkoutSession = event.data.object as Stripe.Checkout.Session;
-          if (checkoutSession.mode === "subscription") {
-            const subscriptionId = checkoutSession.subscription;
-            await manageSubscriptionStatusChange(
-              subscriptionId as string,
-              checkoutSession.customer as string,
-              true,
-            );
+          {
+            const checkoutSession = event.data
+              .object as Stripe.Checkout.Session;
+            if (checkoutSession.mode === "subscription") {
+              const subscriptionId = checkoutSession.subscription;
+              await manageSubscriptionStatusChange(
+                subscriptionId as string,
+                checkoutSession.customer as string,
+                true,
+              );
+            }
           }
           break;
         default:

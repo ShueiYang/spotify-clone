@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 
     const customer = await createOrRetrieveCustomer({
       uuid: user.id,
-      email: user.email || "",
+      email: user.email ?? "",
     });
 
     if (!customer) {
