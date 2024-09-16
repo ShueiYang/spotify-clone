@@ -4,7 +4,6 @@ import { useLoadImageUrl } from "@/hooks/useBucketStorage";
 import { Song } from "@/types/custom.types";
 import Image from "next/image";
 import PlayButton from "@/components/customButtons/PlayButton";
-import { usePlayerStore } from "@/hooks/usePlayerStore";
 
 interface SongItemProps {
   data: Song;
@@ -12,27 +11,8 @@ interface SongItemProps {
 }
 
 const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
-  // Zustand custom hook
-  const [isPlaying, activeSongId, playPause, setIsExiting] = usePlayerStore(
-    (state) => [
-      state.isPlaying,
-      state.activeSongId,
-      state.playPause,
-      state.setIsExiting,
-    ],
-  );
   // load Song Image from storage
   const imagePath = useLoadImageUrl(data);
-
-  // handle action depending if a song is playing or not
-  function handleClickAction(songId: string) {
-    if (!isPlaying || (isPlaying && songId !== activeSongId)) {
-      playPause(true);
-      return onPlayClick(songId);
-    } else {
-      return setIsExiting(true);
-    }
-  }
 
   return (
     <div
@@ -42,7 +22,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
       <div className="relative aspect-square h-auto w-full overflow-hidden rounded-md">
         <Image
           className="object-cover"
-          src={imagePath || "/images/liked.png"}
+          src={imagePath ?? "/images/liked.png"}
           alt="album cover"
           fill
           sizes="(max-width: 250px) 100vw"
@@ -58,7 +38,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
         <PlayButton
           songId={data.id as string}
           className="translate-y-1/4 group-hover:translate-y-0"
-          onPlay={handleClickAction}
+          onPlay={onPlayClick}
         />
       </div>
     </div>

@@ -13,13 +13,30 @@ const PlayButton: React.FC<PlayButtonProps> = ({
   className,
   onPlay,
 }) => {
-  const isPlaying = usePlayerStore((state) => state.isPlaying);
-  const activeSongId = usePlayerStore((state) => state.activeSongId);
+  // Zustand custom hook
+  const [isPlaying, activeSongId, playPause, setIsExiting] = usePlayerStore(
+    (state) => [
+      state.isPlaying,
+      state.activeSongId,
+      state.playPause,
+      state.setIsExiting,
+    ],
+  );
+
+  // handle action depending if a song is playing or not
+  function handlePlayAction(songId: string) {
+    if (!isPlaying || (isPlaying && songId !== activeSongId)) {
+      playPause(true);
+      return onPlay(songId);
+    } else {
+      return setIsExiting(true);
+    }
+  }
 
   return (
     <button
       className={twMerge(`play-btn translate`, className)}
-      onClick={() => onPlay(songId)}
+      onClick={() => handlePlayAction(songId)}
     >
       {isPlaying && songId === activeSongId ? (
         <FaPause className="text-black" />

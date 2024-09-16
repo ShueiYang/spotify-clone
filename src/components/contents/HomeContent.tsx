@@ -17,7 +17,13 @@ export default function HomeContent({ songs }: Readonly<SongsContent>) {
   return (
     <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
       {songs.map((song) => {
-        return <SongItem key={song.id} data={song} onPlayClick={onPlay} />;
+        return (
+          <SongItem 
+            key={song.id} 
+            data={song} 
+            onPlayClick={onPlay} 
+          />
+        )
       })}
     </div>
   );
