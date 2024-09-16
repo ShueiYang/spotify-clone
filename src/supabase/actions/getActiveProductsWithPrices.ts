@@ -11,7 +11,7 @@ export default async function getActiveProductsWithPrices(): Promise<
     .eq("active", true)
     .eq("prices.active", true)
     .order("metadata->index")
-    .order("unit_amount", { foreignTable: "prices" });
+    .order("unit_amount", { referencedTable: "prices" });
 
   if (error) {
     console.error(error);

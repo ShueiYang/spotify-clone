@@ -25,10 +25,10 @@ const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
   const imagePath = useLoadImageUrl(data);
 
   // handle action depending if a song is playing or not
-  function handleClickAction() {
-    if (!isPlaying || (isPlaying && data.id !== activeSongId)) {
+  function handleClickAction(songId: string) {
+    if (!isPlaying || (isPlaying && songId !== activeSongId)) {
       playPause(true);
-      return onPlayClick(data.id as string);
+      return onPlayClick(songId);
     } else {
       return setIsExiting(true);
     }
@@ -54,10 +54,11 @@ const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
           <p className="line-clamp-2">By {data.author}</p>
         </div>
       </div>
-      <div className="absolute bottom-24 right-5" onClick={handleClickAction}>
+      <div className="absolute bottom-24 right-5">
         <PlayButton
           songId={data.id as string}
           className="translate-y-1/4 group-hover:translate-y-0"
+          onPlay={handleClickAction}
         />
       </div>
     </div>
