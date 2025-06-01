@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["ynrdtvlapgrwavoscsem.supabase.co"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ynrdtvlapgrwavoscsem.supabase.co",
+        pathname: "**",
+      },
+    ],
   },
   // output: "standalone",
 };

@@ -8,7 +8,7 @@ export interface UserStore {
   subscription: Subscription | null;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+export const useUserStore = create<UserStore>(() => ({
   user: null,
   userDetails: null,
   subscription: null,

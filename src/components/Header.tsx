@@ -21,7 +21,7 @@ interface HeaderProps {
   className?: string;
 }
 
-const Header = ({ session, className }: HeaderProps) => {
+export default function Header({ session, className }: HeaderProps) {
   const router = useRouter();
   // Zustand custom hook
   const onOpen = useAuthModal((state) => state.onOpen);
@@ -56,6 +56,7 @@ const Header = ({ session, className }: HeaderProps) => {
       <div className="hidden items-center gap-x-2 md:flex">
         <button
           // onClick={()=> router.back()}
+          type="button"
           className="flex items-center justify-center rounded-full bg-black transition hover:opacity-75 disabled:pointer-events-none disabled:opacity-50"
           disabled={false}
         >
@@ -63,6 +64,7 @@ const Header = ({ session, className }: HeaderProps) => {
         </button>
         <button
           // onClick={()=> router.forward()}
+          type="button"
           className="flex items-center justify-center rounded-full bg-black transition hover:opacity-75 disabled:pointer-events-none disabled:opacity-50"
           disabled={false}
         >
@@ -114,6 +116,4 @@ const Header = ({ session, className }: HeaderProps) => {
       </div>
     </nav>
   );
-};
-
-export default Header;
+}

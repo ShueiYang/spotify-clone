@@ -31,7 +31,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         .from("favorite_songs")
         .select("*")
         .eq("user_id", user.id)
-        .eq("song_id", songId)
+        .eq("song_id", songId as number)
         .maybeSingle(); // query result must be 0 or 1 row otherwise return an error
       if (!error && data) {
         setIsLiked(true);
@@ -55,7 +55,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         .from("favorite_songs")
         .delete()
         .eq("user_id", user.id)
-        .eq("song_id", songId);
+        .eq("song_id", songId as number);
 
       if (error) {
         toast.error(error.message);
@@ -82,7 +82,11 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
     <TooltipMenu
       content={isLiked ? "Remove from your favorite" : "Save to your favorite"}
     >
-      <button className="transition hover:opacity-75" onClick={handleLike}>
+      <button
+        type="button"
+        className="transition hover:opacity-75"
+        onClick={handleLike}
+      >
         <Icon color={isLiked ? "#0d9488" : "white"} size={25} />
       </button>
     </TooltipMenu>

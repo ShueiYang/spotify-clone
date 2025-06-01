@@ -17,7 +17,7 @@ export default function MainLoader() {
             {[...new Array(16)].map((_, index) => {
               return (
                 <div
-                  key={index}
+                  key={`unique-${String.fromCharCode(index + 65)}`}
                   className="flex flex-col items-center justify-center gap-x-4 rounded-md bg-neutral-400/5 p-3"
                 >
                   <div className="aspect-square h-full w-full rounded-md">

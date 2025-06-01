@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Box from "@/components/Box";
 
 export default function NotFound() {
@@ -6,9 +7,9 @@ export default function NotFound() {
       <h1 className="mb-6 text-xl text-neutral-400">
         404 This page could not be found.
       </h1>
-      <a href="/" rel="noopener noreferrer" className="item-link">
+      <Link href="/" rel="noopener noreferrer" className="item-link">
         - Back to hompage -
-      </a>
+      </Link>
     </Box>
   );
 }

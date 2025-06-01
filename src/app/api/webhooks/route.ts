@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
-import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import Stripe from "stripe";
 
 import { stripe } from "@/libs/stripe";
 import {
@@ -23,7 +23,8 @@ const relevantEvents = new Set([
 export async function POST(request: Request) {
   try {
     const body = await request.text();
-    const sig = headers().get("Stripe-Signature");
+    const headersList = await headers();
+    const sig = headersList.get("Stripe-Signature");
 
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 

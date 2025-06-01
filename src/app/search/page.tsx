@@ -13,10 +13,11 @@ export const metadata: Metadata = {
 };
 
 interface SearchProps {
-  searchParams: { title: string };
+  searchParams: Promise<{ title: string }>;
 }
 
-export default async function SearchPage({ searchParams }: SearchProps) {
+export default async function SearchPage(props: SearchProps) {
+  const searchParams = await props.searchParams;
   const session = await getSession();
   const song = await getSongsByTitle(searchParams.title);
 

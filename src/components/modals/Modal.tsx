@@ -35,6 +35,7 @@ const Modal: React.FC<ModalProps> = ({
           <div>{children}</div>
           <Dialog.Close asChild>
             <button
+              type="button"
               className="absolute right-[10px] top-[10px] inline-flex h-6 w-6 appearance-none items-center
               justify-center rounded-full text-neutral-400 hover:text-white focus:outline-none"
             >

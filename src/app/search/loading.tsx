@@ -15,7 +15,10 @@ export default function Loader() {
           <div className="flex w-full flex-col gap-y-2">
             {[...new Array(16)].map((_, index) => {
               return (
-                <div className="w-full p-2 md:w-[75%] xl:w-[50%]" key={index}>
+                <div
+                  className="w-full p-2 md:w-[75%] xl:w-[50%]"
+                  key={`unique-${String.fromCharCode(index + 65)}`}
+                >
                   <div className="flex items-center gap-x-3">
                     <Skeleton width={48} height={48} />
                     <div className="flex flex-col gap-y-1">

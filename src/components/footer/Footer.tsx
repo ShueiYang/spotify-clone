@@ -51,13 +51,22 @@ const Footer = () => {
           </div>
         </nav>
         <div className="flex gap-x-4 px-6 py-4">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70"
+          >
             <FaInstagram size={16} />
           </button>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70"
+          >
             <FaTwitter size={16} />
           </button>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70"
+          >
             <FaFacebook size={16} />
           </button>
         </div>

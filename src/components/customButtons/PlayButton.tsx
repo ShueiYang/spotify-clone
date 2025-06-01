@@ -35,6 +35,7 @@ const PlayButton: React.FC<PlayButtonProps> = ({
 
   return (
     <button
+      type="button"
       className={twMerge(`play-btn translate`, className)}
       onClick={() => handlePlayAction(songId)}
     >

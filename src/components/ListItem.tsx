@@ -26,6 +26,7 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
 
   return (
     <button
+      type="button"
       onClick={handleAuth}
       className="group relative flex min-w-[240px] items-center gap-x-4 overflow-hidden
      rounded-md bg-neutral-100/10 pr-4 transition hover:bg-neutral-100/20"
