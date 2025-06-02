@@ -7,7 +7,11 @@ export default function NotFound() {
       <h1 className="mb-6 text-xl text-neutral-400">
         404 This page could not be found.
       </h1>
-      <Link href="/" rel="noopener noreferrer" className="item-link">
+      <Link
+        href="/"
+        rel="noopener noreferrer"
+        className="item-link"
+      >
         - Back to hompage -
       </Link>
     </Box>

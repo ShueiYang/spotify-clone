@@ -53,7 +53,10 @@ const Sidebar: React.FC<SidebarProps> = ({ userSongs }) => {
       <Box>
         <div className="flex flex-col gap-y-3 px-5 py-4">
           {navigationItems.map((item) => (
-            <SidebarItem key={item.label} {...item} />
+            <SidebarItem
+              key={item.label}
+              {...item}
+            />
           ))}
         </div>
       </Box>

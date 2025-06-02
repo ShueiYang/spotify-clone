@@ -104,7 +104,10 @@ const UploadModal = () => {
       isOpen={isOpen}
       onChange={onChange}
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col"
+      >
         <InputForm
           id="title"
           disabled={isSubmitting}

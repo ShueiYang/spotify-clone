@@ -20,7 +20,10 @@ export default function LikedContent({ songs }: Readonly<SongsContent>) {
   return (
     <div className="mb-4 flex w-full flex-col gap-y-2 px-6">
       {songs.map((song) => (
-        <div key={song.id} className="flex w-full items-center gap-x-4">
+        <div
+          key={song.id}
+          className="flex w-full items-center gap-x-4"
+        >
           <div className="group relative flex-1">
             <MediaItem data={song} />
             <div className="absolute inset-y-3 right-5">

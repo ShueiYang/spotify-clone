@@ -43,7 +43,7 @@ export default tseslint.config(
           argsIgnorePattern: "^_",
         },
       ],
-      "prettier/prettier": "warn",
+      curly: ["error", "all"],
     },
   },
 );

@@ -63,7 +63,6 @@ export default function MusicPlayer() {
     }
   }, [isExiting, reset]);
 
-  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (currentSongs.length) {
       setSeekTime(0);
@@ -73,7 +72,9 @@ export default function MusicPlayer() {
   }, [currentIndex, currentSongs.length, song?.id, setActiveSongId]);
 
   function handlePlayPause() {
-    if (!songUrl) return;
+    if (!songUrl) {
+      return;
+    }
 
     if (isPlaying) {
       playPause(false);
@@ -126,7 +127,11 @@ export default function MusicPlayer() {
           className="absolute right-1 top-2 cursor-pointer text-gray-300 hover:text-white"
           onClick={() => setIsExiting(true)}
         />
-        <Track isPlaying={isPlaying} isActive={isActive} song={song} />
+        <Track
+          isPlaying={isPlaying}
+          isActive={isActive}
+          song={song}
+        />
         <div className="flex flex-col lg:basis-2/3 lg:flex-row">
           <div className="flex flex-1 flex-col items-center justify-center">
             <Controls

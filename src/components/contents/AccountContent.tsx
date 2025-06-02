@@ -38,7 +38,10 @@ const AccountContent: React.FC<AccountContentProps> = ({ subscription }) => {
       {!subscription && (
         <div className="flex flex-col gap-y-6">
           <p>No active plan.</p>
-          <Button className="w-[300px]" onClick={onOpen}>
+          <Button
+            className="w-[300px]"
+            onClick={onOpen}
+          >
             Subscribe
           </Button>
         </div>

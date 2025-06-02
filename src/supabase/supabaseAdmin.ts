@@ -104,7 +104,9 @@ const copyBillingDetailsToCustomer = async (
   const customer = paymentMethod.customer as string;
   const { name, phone, address } = paymentMethod.billing_details;
 
-  if (!name || !phone || !address) return;
+  if (!name || !phone || !address) {
+    return;
+  }
 
   await stripe.customers.update(customer, {
     name,

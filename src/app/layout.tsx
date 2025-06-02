@@ -39,7 +39,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={figtree.className}>
-        <StoreInitializer user={user} subscription={result.subscription} />
+        <StoreInitializer
+          user={user}
+          subscription={result.subscription}
+        />
         <ToasterProvider />
         <ModalProvider products={products} />
         <main className="relative flex h-full">

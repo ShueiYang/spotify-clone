@@ -23,7 +23,10 @@ export default async function SearchPage(props: SearchProps) {
 
   return (
     <div className="flex w-full flex-col">
-      <Header className="bg-neutral-900" session={session} />
+      <Header
+        className="bg-neutral-900"
+        session={session}
+      />
       <div className="bg-gradient-black w-full flex-1">
         <header className="flex flex-col gap-y-6 px-6 pb-6">
           <h1 className="text-3xl font-semibold text-white">Search</h1>

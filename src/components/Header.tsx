@@ -60,7 +60,10 @@ export default function Header({ session, className }: HeaderProps) {
           className="flex items-center justify-center rounded-full bg-black transition hover:opacity-75 disabled:pointer-events-none disabled:opacity-50"
           disabled={false}
         >
-          <RxCaretLeft size={35} className="text-white" />
+          <RxCaretLeft
+            size={35}
+            className="text-white"
+          />
         </button>
         <button
           // onClick={()=> router.forward()}
@@ -68,7 +71,10 @@ export default function Header({ session, className }: HeaderProps) {
           className="flex items-center justify-center rounded-full bg-black transition hover:opacity-75 disabled:pointer-events-none disabled:opacity-50"
           disabled={false}
         >
-          <RxCaretRight size={35} className="text-white" />
+          <RxCaretRight
+            size={35}
+            className="text-white"
+          />
         </button>
       </div>
       <div className="flex items-center gap-x-2 md:hidden">
@@ -76,19 +82,28 @@ export default function Header({ session, className }: HeaderProps) {
           href="/"
           className="flex items-center justify-center rounded-full bg-white p-2 transition hover:opacity-70"
         >
-          <GoHomeFill size={23} className="text-black" />
+          <GoHomeFill
+            size={23}
+            className="text-black"
+          />
         </Link>
         <Link
           href="/search"
           className="flex items-center justify-center rounded-full bg-white p-2 transition hover:opacity-70"
         >
-          <BiSearch size={23} className="text-black" />
+          <BiSearch
+            size={23}
+            className="text-black"
+          />
         </Link>
       </div>
       <div className="flex items-center justify-between gap-x-4">
         {session ? (
           <div className="flex items-center gap-x-4">
-            <Button onClick={handleLogout} className="bg-white px-6 py-2">
+            <Button
+              onClick={handleLogout}
+              className="bg-white px-6 py-2"
+            >
               Logout
             </Button>
             <Link href="/account">

@@ -87,7 +87,10 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         className="transition hover:opacity-75"
         onClick={handleLike}
       >
-        <Icon color={isLiked ? "#0d9488" : "white"} size={25} />
+        <Icon
+          color={isLiked ? "#0d9488" : "white"}
+          size={25}
+        />
       </button>
     </TooltipMenu>
   );
