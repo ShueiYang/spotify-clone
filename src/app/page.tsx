@@ -1,9 +1,9 @@
-import Header from "@/components/Header";
-import Footer from "@/components/footer/Footer";
-import ListItem from "@/components/ListItem";
-import HomeContent from "@/components/contents/HomeContent";
+import { Header } from "@/components/Header";
 import { getSession } from "@/supabase/server";
 import getSongs from "@/supabase/actions/getSongs";
+import ListItem from "@/components/ListItem";
+import HomeContent from "@/components/contents/HomeContent";
+import { Footer } from "@/components/footer/Footer";
 
 export const revalidate = 0;
 

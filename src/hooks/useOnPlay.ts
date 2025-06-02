@@ -3,7 +3,7 @@ import { usePlayerStore } from "./usePlayerStore";
 import { useAuthModal } from "./useAuthModal";
 import { useUserStore } from "./useUserStore";
 
-function useOnPlay(songs: Song[]) {
+export default function useOnPlay(songs: Song[]) {
   const authModal = useAuthModal();
   const user = useUserStore((state) => state.user);
 
@@ -27,5 +27,3 @@ function useOnPlay(songs: Song[]) {
   };
   return onPlay;
 }
-
-export default useOnPlay;

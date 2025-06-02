@@ -1,6 +1,7 @@
-import { usePlayerStore } from "@/hooks/usePlayerStore";
-import { FaPause, FaPlay } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
+
+import { usePlayerStore } from "@/hooks/usePlayerStore";
+import { SvgIcon, SvgIconName } from "../svg/SvgIcon";
 
 interface PlayButtonProps {
   songId: string;
@@ -8,11 +9,11 @@ interface PlayButtonProps {
   onPlay: (songId: string) => void;
 }
 
-const PlayButton: React.FC<PlayButtonProps> = ({
+export function PlayButton({
   songId,
   className,
   onPlay,
-}) => {
+}: Readonly<PlayButtonProps>) {
   // Zustand custom hook
   const [isPlaying, activeSongId, playPause, setIsExiting] = usePlayerStore(
     (state) => [
@@ -22,6 +23,9 @@ const PlayButton: React.FC<PlayButtonProps> = ({
       state.setIsExiting,
     ],
   );
+
+  const playIconName: SvgIconName =
+    isPlaying && songId === activeSongId ? "Pause" : "Play";
 
   // handle action depending if a song is playing or not
   function handlePlayAction(songId: string) {
@@ -39,13 +43,11 @@ const PlayButton: React.FC<PlayButtonProps> = ({
       className={twMerge(`play-btn translate`, className)}
       onClick={() => handlePlayAction(songId)}
     >
-      {isPlaying && songId === activeSongId ? (
-        <FaPause className="text-black" />
-      ) : (
-        <FaPlay className="text-black" />
-      )}
+      <SvgIcon
+        name={playIconName}
+        fill="black"
+        className="text-black"
+      />
     </button>
   );
-};
-
-export default PlayButton;
+}

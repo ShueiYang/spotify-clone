@@ -7,11 +7,11 @@ import { getSubscribInfo, getUser } from "@/supabase/server";
 import getSongsByUserId from "@/supabase/actions/getSongsByUserId";
 import getActiveProductsWithPrices from "@/supabase/actions/getActiveProductsWithPrices";
 
-import Sidebar from "@/components/sidebar/Sidebar";
+import { Sidebar } from "@/components/sidebar/Sidebar";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import StoreInitializer from "@/providers/UserProvider";
-import MusicPlayer from "@/components/musicPlayer/indexBar";
+import MusicPlayer from "@/components/musicPlayer/MusicPlayer";
 
 const figtree = Figtree({ subsets: ["latin"] });
 

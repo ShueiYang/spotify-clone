@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
+
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { useUserStore } from "@/hooks/useUserStore";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FaPlay } from "react-icons/fa";
+import { SvgIcon } from "./svg/SvgIcon";
 
 interface ListItemProps {
   image: string;
@@ -42,7 +43,12 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
       </div>
       <p className="truncate py-5 font-medium">{name}</p>
       <div className="play-btn absolute right-5 justify-center">
-        <FaPlay className="text-black" />
+        <SvgIcon
+          name="Play"
+          size={20}
+          fill="black"
+          className="text-black"
+        />
       </div>
     </button>
   );

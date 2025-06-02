@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
+
 import { useLoadImageUrl } from "@/hooks/useBucketStorage";
 import { Song } from "@/types/custom.types";
-import Image from "next/image";
-import PlayButton from "@/components/customButtons/PlayButton";
+import { PlayButton } from "@/components/customButtons/PlayButton";
 
 interface SongItemProps {
   data: Song;

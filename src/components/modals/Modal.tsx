@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { IoMdClose } from "react-icons/io";
+import { SvgIcon } from "../svg/SvgIcon";
 
 interface ModalProps {
   isOpen: boolean;
@@ -43,7 +43,10 @@ const Modal: React.FC<ModalProps> = ({
               className="absolute right-[10px] top-[10px] inline-flex h-6 w-6 appearance-none items-center
               justify-center rounded-full text-neutral-400 hover:text-white focus:outline-none"
             >
-              <IoMdClose size={20} />
+              <SvgIcon
+                name="XIcon"
+                size={20}
+              />
             </button>
           </Dialog.Close>
         </Dialog.Content>

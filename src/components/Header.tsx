@@ -6,14 +6,10 @@ import { useRouter } from "next/navigation";
 import { Session } from "@supabase/auth-helpers-nextjs";
 import { toast } from "react-hot-toast";
 
-import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
-import { GoHomeFill } from "react-icons/go";
-import { BiSearch } from "react-icons/bi";
-import { FaUserAlt } from "react-icons/fa";
-
 import { createClientSupabaseClient } from "@/supabase/client";
 import { ViewType, useAuthModal } from "@/hooks/useAuthModal";
 import { usePlayerStore } from "@/hooks/usePlayerStore";
+import { SvgIcon } from "./svg/SvgIcon";
 import Button from "@/components/customButtons/Button";
 
 interface HeaderProps {
@@ -21,14 +17,14 @@ interface HeaderProps {
   className?: string;
 }
 
-export default function Header({ session, className }: HeaderProps) {
+export function Header({ session, className }: HeaderProps) {
   const router = useRouter();
   // Zustand custom hook
   const onOpen = useAuthModal((state) => state.onOpen);
   const setView = useAuthModal((state) => state.setView);
   const reset = usePlayerStore((state) => state.reset);
 
-  const handleLogout = async () => {
+  async function handleLogout() {
     const supabase = createClientSupabaseClient();
     const { error } = await supabase.auth.signOut();
     // reset any playing songs
@@ -39,12 +35,12 @@ export default function Header({ session, className }: HeaderProps) {
     } else {
       toast.success("Successfully Logged out!");
     }
-  };
+  }
 
-  const handleOpen = (view: ViewType) => {
+  function handleOpen(view: ViewType) {
     setView(view);
     onOpen();
-  };
+  }
 
   return (
     <nav
@@ -60,9 +56,10 @@ export default function Header({ session, className }: HeaderProps) {
           className="flex items-center justify-center rounded-full bg-black transition hover:opacity-75 disabled:pointer-events-none disabled:opacity-50"
           disabled={false}
         >
-          <RxCaretLeft
+          <SvgIcon
+            name="ChevronLeft"
             size={35}
-            className="text-white"
+            className="p-1 text-white"
           />
         </button>
         <button
@@ -71,9 +68,10 @@ export default function Header({ session, className }: HeaderProps) {
           className="flex items-center justify-center rounded-full bg-black transition hover:opacity-75 disabled:pointer-events-none disabled:opacity-50"
           disabled={false}
         >
-          <RxCaretRight
+          <SvgIcon
+            name="ChevronRight"
             size={35}
-            className="text-white"
+            className="p-1 text-white"
           />
         </button>
       </div>
@@ -82,7 +80,8 @@ export default function Header({ session, className }: HeaderProps) {
           href="/"
           className="flex items-center justify-center rounded-full bg-white p-2 transition hover:opacity-70"
         >
-          <GoHomeFill
+          <SvgIcon
+            name="House"
             size={23}
             className="text-black"
           />
@@ -91,7 +90,8 @@ export default function Header({ session, className }: HeaderProps) {
           href="/search"
           className="flex items-center justify-center rounded-full bg-white p-2 transition hover:opacity-70"
         >
-          <BiSearch
+          <SvgIcon
+            name="Search"
             size={23}
             className="text-black"
           />
@@ -108,7 +108,7 @@ export default function Header({ session, className }: HeaderProps) {
             </Button>
             <Link href="/account">
               <Button className="bg-white">
-                <FaUserAlt />
+                <SvgIcon name="User" />
               </Button>
             </Link>
           </div>

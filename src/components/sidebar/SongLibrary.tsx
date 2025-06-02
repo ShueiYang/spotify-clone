@@ -1,15 +1,14 @@
 "use client";
 
-import { TbPlaylist } from "react-icons/tb";
-import { AiOutlinePlus } from "react-icons/ai";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { useUserStore } from "@/hooks/useUserStore";
 import { useUploadModal } from "@/hooks/useUploadModal";
+import { SvgIcon } from "../svg/SvgIcon";
 import { SidebarProps } from "./Sidebar";
 import MediaItem from "./MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
 
-const SongLibrary = ({ userSongs }: SidebarProps) => {
+export function SongLibrary({ userSongs }: Readonly<SidebarProps>) {
   // Zustand custom hook
   const onOpenAuth = useAuthModal((state) => state.onOpen);
   const onOpenUpload = useUploadModal((state) => state.onOpen);
@@ -28,15 +27,17 @@ const SongLibrary = ({ userSongs }: SidebarProps) => {
     <div className="flex flex-col overflow-y-auto">
       <div className="flex items-center justify-between px-5 pt-4">
         <div className="inline-flex items-center gap-x-2">
-          <TbPlaylist
+          <SvgIcon
+            name="ListMusic"
             size={26}
             className="text-neutral-400"
           />
           <span className="font-medium text-neutral-400">Your Library</span>
         </div>
-        <AiOutlinePlus
+        <SvgIcon
+          name="Plus"
           onClick={handleUpload}
-          size={22}
+          size={24}
           className="cursor-pointer text-neutral-400 transition hover:text-white"
         />
       </div>
@@ -51,6 +52,4 @@ const SongLibrary = ({ userSongs }: SidebarProps) => {
       </div>
     </div>
   );
-};
-
-export default SongLibrary;
+}

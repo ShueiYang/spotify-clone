@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
+
 import { usePlayerStore } from "@/hooks/usePlayerStore";
 import { useLoadSongUrl } from "@/hooks/useBucketStorage";
+import { SvgIcon } from "../svg/SvgIcon";
 import Track from "./Track";
-import Controls from "./Controls";
+import { Controls } from "./Controls";
 import Seekbar from "./Seekbar";
-import Player from "./Player";
-import VolumeBar from "./VolumeBar";
+import { Player } from "./Player";
+import { VolumeBar } from "./VolumeBar";
 
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 export type AudioEvent = React.SyntheticEvent<HTMLAudioElement>;
@@ -122,16 +123,19 @@ export default function MusicPlayer() {
         className="relative flex w-full items-center justify-between px-8 sm:px-12"
         key={songUrl}
       >
-        <IoMdClose
+        <SvgIcon
+          name="XIcon"
           size={20}
           className="absolute right-1 top-2 cursor-pointer text-gray-300 hover:text-white"
           onClick={() => setIsExiting(true)}
         />
+
         <Track
           isPlaying={isPlaying}
           isActive={isActive}
           song={song}
         />
+
         <div className="flex flex-col lg:basis-2/3 lg:flex-row">
           <div className="flex flex-1 flex-col items-center justify-center">
             <Controls
@@ -145,6 +149,7 @@ export default function MusicPlayer() {
               handlePrevSong={handlePrevSong}
               handleNextSong={handleNextSong}
             />
+
             <Seekbar
               value={appTime}
               min={0}
@@ -155,6 +160,7 @@ export default function MusicPlayer() {
               setSeekTime={setSeekTime}
               appTime={appTime}
             />
+
             <Player
               songUrl={songUrl}
               volume={volume}
@@ -170,6 +176,7 @@ export default function MusicPlayer() {
               }}
             />
           </div>
+
           <VolumeBar
             value={volume}
             min={0}

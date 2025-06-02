@@ -1,19 +1,20 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { createClientSupabaseClient } from "@/supabase/client";
 import { toast } from "react-hot-toast";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { useUserStore } from "@/hooks/useUserStore";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { SvgIcon } from "../svg/SvgIcon";
 import TooltipMenu from "../Tooltip";
 
 interface LikeButtonProps {
   songId: string | number;
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
+export function LikeButton({ songId }: Readonly<LikeButtonProps>) {
   const router = useRouter();
   // Zustand custom hook
   const user = useUserStore((state) => state.user);
@@ -41,8 +42,6 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
     };
     fetchFavoriteSong();
   }, [user?.id, songId]);
-
-  const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
 
   async function handleLike() {
     const supabase = createClientSupabaseClient();
@@ -87,13 +86,13 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         className="transition hover:opacity-75"
         onClick={handleLike}
       >
-        <Icon
-          color={isLiked ? "#0d9488" : "white"}
+        <SvgIcon
+          name="Heart"
           size={25}
+          color={isLiked ? "#0d9488" : "white"}
+          fill={isLiked ? "#0d9488" : "none"}
         />
       </button>
     </TooltipMenu>
   );
-};
-
-export default LikeButton;
+}

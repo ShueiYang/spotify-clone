@@ -1,20 +1,20 @@
 import Link from "next/link";
-import { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
+import { SvgIcon, SvgIconName } from "../svg/SvgIcon";
 
-interface SidebarItemProps {
+export interface SidebarItemProps {
   label: string;
   href: string;
   active?: boolean;
-  icon: IconType;
+  icon: SvgIconName;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({
+export function SidebarItem({
   label,
   href,
   active,
-  icon: Icon,
-}) => {
+  icon: iconName,
+}: Readonly<SidebarItemProps>) {
   return (
     <Link
       href={href}
@@ -24,10 +24,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         active && "text-white",
       )}
     >
-      <Icon size={30} />
+      <SvgIcon
+        name={iconName}
+        size={30}
+      />
       <span className="w-full truncate">{label}</span>
     </Link>
   );
-};
-
-export default SidebarItem;
+}

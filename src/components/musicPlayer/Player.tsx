@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { AudioEvent } from "./indexBar";
+import { AudioEvent } from "./MusicPlayer";
 
 interface PlayerProps {
   songUrl: string;
@@ -12,7 +12,7 @@ interface PlayerProps {
   onLoadedData: (event: AudioEvent) => void;
 }
 
-const Player: React.FC<PlayerProps> = ({
+export function Player({
   songUrl,
   isPlaying,
   volume,
@@ -21,7 +21,7 @@ const Player: React.FC<PlayerProps> = ({
   onTimeUpdate,
   onLoadedData,
   repeat,
-}) => {
+}: Readonly<PlayerProps>) {
   const ref = useRef<HTMLAudioElement | null>(null);
 
   if (ref.current) {
@@ -54,6 +54,4 @@ const Player: React.FC<PlayerProps> = ({
       onLoadedData={onLoadedData}
     />
   );
-};
-
-export default Player;
+}

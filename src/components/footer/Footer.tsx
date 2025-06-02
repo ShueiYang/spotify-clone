@@ -1,12 +1,15 @@
-import { FaFacebook, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
 import {
   NAVIGATION_FOOTER,
   NAVIGATION_ITEMS1,
   NAVIGATION_ITEMS2,
   NAVIGATION_ITEMS3,
 } from "./menu.items";
+import { Github } from "../svg/logos/Github";
+import { Discord } from "../svg/logos/Discord";
+import { Battlenet } from "../svg/logos/Battlenet";
+import { Instagram } from "../svg/logos/Instagram";
 
-const Footer = () => {
+export function Footer() {
   return (
     <footer className="rounded-b-lg bg-neutral-900/95">
       <div className="mt-8 flex flex-col justify-between sm:flex-row">
@@ -36,7 +39,11 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <FaGithub size={18} />
+                <Github
+                  width={21}
+                  height={21}
+                  fill="#FFF"
+                />
                 <span className="item-link pb-0">GitHub</span>
               </a>
             </div>
@@ -55,19 +62,30 @@ const Footer = () => {
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70"
           >
-            <FaInstagram size={16} />
+            <Discord
+              width={18}
+              height={18}
+              fill="#FFF"
+            />
           </button>
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70"
           >
-            <FaTwitter size={16} />
+            <Battlenet
+              width={18}
+              height={18}
+              fill="#FFF"
+            />
           </button>
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-400/20 hover:bg-neutral-400/70"
           >
-            <FaFacebook size={16} />
+            <Instagram
+              width={18}
+              height={18}
+            />
           </button>
         </div>
       </div>
@@ -90,6 +108,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

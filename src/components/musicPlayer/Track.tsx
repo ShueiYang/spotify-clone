@@ -1,7 +1,8 @@
+import Image from "next/image";
+
 import { useLoadImageUrl } from "@/hooks/useBucketStorage";
 import { Song } from "@/types/custom.types";
-import Image from "next/image";
-import LikeButton from "@/components/customButtons/LikeButton";
+import { LikeButton } from "@/components/customButtons/LikeButton";
 
 interface TrackProps {
   isPlaying: boolean;

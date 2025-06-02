@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { InputEvent } from "./indexBar";
+import { InputEvent } from "./MusicPlayer";
 
 interface SeekbarProps {
   value: number;

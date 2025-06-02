@@ -1,7 +1,7 @@
-import Header from "@/components/Header";
-import AccountContent from "@/components/contents/AccountContent";
-import Footer from "@/components/footer/Footer";
+import { Header } from "@/components/Header";
 import { getSession, getSubscribInfo } from "@/supabase/server";
+import AccountContent from "@/components/contents/AccountContent";
+import { Footer } from "@/components/footer/Footer";
 
 export default async function Accountpage() {
   const session = await getSession();

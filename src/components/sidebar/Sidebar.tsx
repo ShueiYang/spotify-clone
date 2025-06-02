@@ -2,44 +2,45 @@
 
 import { Song } from "@/types/custom.types";
 import { usePathname, useRouter } from "next/navigation";
-import { useMemo } from "react";
-import { GoHomeFill } from "react-icons/go";
-import { BiSearch } from "react-icons/bi";
-import Box from "@/components/Box";
-import SidebarItem from "./SidebarItem";
-import SongLibrary from "./SongLibrary";
-import Button from "@/components/customButtons/Button";
+
 import { useUserStore } from "@/hooks/useUserStore";
 import { useAuthModal } from "@/hooks/useAuthModal";
+import { SidebarItem, SidebarItemProps } from "./SidebarItem";
+import Box from "@/components/Box";
+import { SongLibrary } from "./SongLibrary";
+import Button from "@/components/customButtons/Button";
 
+type NavigationItem = {
+  label: string;
+  href: string;
+  active: boolean;
+  icon: SidebarItemProps["icon"];
+};
 export interface SidebarProps {
   userSongs: Song[];
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ userSongs }) => {
+export function Sidebar({ userSongs }: Readonly<SidebarProps>) {
   const router = useRouter();
   const pathname = usePathname();
   const user = useUserStore((state) => state.user);
   const subscription = useUserStore((state) => state.subscription);
   const onOpen = useAuthModal((state) => state.onOpen);
 
-  const navigationItems = useMemo(
-    () => [
-      {
-        label: "Home",
-        href: "/",
-        active: pathname !== "/search",
-        icon: GoHomeFill,
-      },
-      {
-        label: "Search",
-        href: "/search",
-        active: pathname === "/search",
-        icon: BiSearch,
-      },
-    ],
-    [pathname],
-  );
+  const navigationItems: NavigationItem[] = [
+    {
+      label: "Home",
+      href: "/",
+      active: pathname !== "/search",
+      icon: "House",
+    },
+    {
+      label: "Search",
+      href: "/search",
+      active: pathname === "/search",
+      icon: "Search",
+    },
+  ];
 
   function handleSubscribe() {
     if (!user) {
@@ -78,6 +79,4 @@ const Sidebar: React.FC<SidebarProps> = ({ userSongs }) => {
       </Box>
     </div>
   );
-};
-
-export default Sidebar;
+}
