@@ -1,8 +1,8 @@
 "use client";
 
 import { Song } from "@/types/custom.types";
+import { useOnPlay } from "@/hooks/useOnPlay";
 import SongItem from "../SongItem";
-import useOnPlay from "@/hooks/useOnPlay";
 
 export type SongsContent = {
   songs: Song[];

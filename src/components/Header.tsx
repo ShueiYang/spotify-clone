@@ -10,7 +10,9 @@ import { createClientSupabaseClient } from "@/supabase/client";
 import { ViewType, useAuthModal } from "@/hooks/useAuthModal";
 import { usePlayerStore } from "@/hooks/usePlayerStore";
 import { SvgIcon } from "./svg/SvgIcon";
+import { useUserStore } from "@/hooks/useUserStore";
 import Button from "@/components/customButtons/Button";
+import { useEffect } from "react";
 
 interface HeaderProps {
   session: Session | null;
@@ -19,17 +21,38 @@ interface HeaderProps {
 
 export function Header({ session, className }: HeaderProps) {
   const router = useRouter();
-  // Zustand custom hook
+
+  // --- Zustand custom hook ---
+
   const onOpen = useAuthModal((state) => state.onOpen);
   const setView = useAuthModal((state) => state.setView);
   const reset = usePlayerStore((state) => state.reset);
 
+  const user = useUserStore((state) => state.user);
+  const setUser = useUserStore((state) => state.setUser);
+  const resetUserSession = useUserStore((state) => state.reset);
+
+  // --- effects ---
+
+  useEffect(
+    function syncUserFromSession() {
+      if (!user && session?.user) {
+        setUser(session.user);
+      }
+    },
+    [session, user, setUser],
+  );
+
+  // --- handlers ---
+
   async function handleLogout() {
     const supabase = createClientSupabaseClient();
     const { error } = await supabase.auth.signOut();
-    // reset any playing songs
+    // reset any playing songs and session
     reset();
+    resetUserSession();
     router.refresh();
+
     if (error) {
       toast.error(error.message);
     } else {
@@ -100,31 +123,36 @@ export function Header({ session, className }: HeaderProps) {
       <div className="flex items-center justify-between gap-x-4">
         {session ? (
           <div className="flex items-center gap-x-4">
+            {session.user.user_metadata.name && (
+              <span className="whitespace-nowrap">
+                {session.user.user_metadata.name}
+              </span>
+            )}
+            <Link href="/account">
+              <Button className="bg-white">
+                <SvgIcon name="User" />
+              </Button>
+            </Link>
             <Button
               onClick={handleLogout}
               className="bg-white px-6 py-2"
             >
               Logout
             </Button>
-            <Link href="/account">
-              <Button className="bg-white">
-                <SvgIcon name="User" />
-              </Button>
-            </Link>
           </div>
         ) : (
           <>
-            <Button
-              onClick={() => handleOpen("sign_up")}
-              className="whitespace-nowrap bg-transparent px-6 py-2 font-medium text-neutral-300 hover:text-white hover:opacity-100"
-            >
-              Sign up
-            </Button>
             <Button
               onClick={() => handleOpen("sign_in")}
               className="bg-white px-6 py-2"
             >
               Log in
+            </Button>
+            <Button
+              onClick={() => handleOpen("sign_up")}
+              className="whitespace-nowrap bg-transparent px-6 py-2 font-medium text-neutral-300 hover:text-white hover:opacity-100"
+            >
+              Sign up
             </Button>
           </>
         )}

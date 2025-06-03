@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useShallow } from "zustand/shallow";
 
 import { usePlayerStore } from "@/hooks/usePlayerStore";
 import { useLoadSongUrl } from "@/hooks/useBucketStorage";
@@ -15,7 +16,8 @@ export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 export type AudioEvent = React.SyntheticEvent<HTMLAudioElement>;
 
 export default function MusicPlayer() {
-  // Zustand custom hook
+  // --- Zustand custom hook ---
+
   const [
     currentSongs,
     currentIndex,
@@ -27,18 +29,20 @@ export default function MusicPlayer() {
     setActiveSongId,
     setIsExiting,
     reset,
-  ] = usePlayerStore((state) => [
-    state.currentSongs,
-    state.currentIndex,
-    state.isActive,
-    state.isPlaying,
-    state.isExiting,
-    state.playPause,
-    state.setCurrentIndex,
-    state.setActiveSongId,
-    state.setIsExiting,
-    state.reset,
-  ]);
+  ] = usePlayerStore(
+    useShallow((state) => [
+      state.currentSongs,
+      state.currentIndex,
+      state.isActive,
+      state.isPlaying,
+      state.isExiting,
+      state.playPause,
+      state.setCurrentIndex,
+      state.setActiveSongId,
+      state.setIsExiting,
+      state.reset,
+    ]),
+  );
 
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
@@ -60,7 +64,10 @@ export default function MusicPlayer() {
         setAppTime(0);
         reset();
       }, 500);
-      return () => clearTimeout(exitTimer);
+
+      return () => {
+        clearTimeout(exitTimer);
+      };
     }
   }, [isExiting, reset]);
 

@@ -16,7 +16,8 @@ interface LikeButtonProps {
 
 export function LikeButton({ songId }: Readonly<LikeButtonProps>) {
   const router = useRouter();
-  // Zustand custom hook
+
+  // --- Zustand custom hook ---
   const user = useUserStore((state) => state.user);
   const onOpen = useAuthModal((state) => state.onOpen);
 

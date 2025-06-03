@@ -20,6 +20,8 @@ type PlayerAction = {
   reset: () => void;
 };
 
+type PlayerStore = PlayerState & PlayerAction;
+
 // define the initial state
 const initialState: PlayerState = {
   currentSongs: [],
@@ -31,7 +33,7 @@ const initialState: PlayerState = {
 };
 
 // create Store
-export const usePlayerStore = create<PlayerState & PlayerAction>((set) => ({
+export const usePlayerStore = create<PlayerStore>((set) => ({
   ...initialState,
 
   setCurrentSongs: (songsArray) => set({ currentSongs: songsArray }),

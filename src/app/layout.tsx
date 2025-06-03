@@ -7,10 +7,10 @@ import { getSubscribInfo, getUser } from "@/supabase/server";
 import getSongsByUserId from "@/supabase/actions/getSongsByUserId";
 import getActiveProductsWithPrices from "@/supabase/actions/getActiveProductsWithPrices";
 
-import { Sidebar } from "@/components/sidebar/Sidebar";
+import { UserProvider } from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
-import StoreInitializer from "@/providers/UserProvider";
+import { Sidebar } from "@/components/sidebar/Sidebar";
 import MusicPlayer from "@/components/musicPlayer/MusicPlayer";
 
 const figtree = Figtree({ subsets: ["latin"] });
@@ -39,17 +39,18 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={figtree.className}>
-        <StoreInitializer
+        <UserProvider
           user={user}
           subscription={result.subscription}
-        />
-        <ToasterProvider />
-        <ModalProvider products={products} />
-        <main className="relative flex h-full">
-          <Sidebar userSongs={userSongs} />
-          <section className="section-container">{children}</section>
-          <MusicPlayer />
-        </main>
+        >
+          <ToasterProvider />
+          <ModalProvider products={products} />
+          <main className="relative flex h-full">
+            <Sidebar userSongs={userSongs} />
+            <section className="section-container">{children}</section>
+            <MusicPlayer />
+          </main>
+        </UserProvider>
       </body>
     </html>
   );

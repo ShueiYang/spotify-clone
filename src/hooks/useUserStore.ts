@@ -1,15 +1,14 @@
-import { User } from "@supabase/auth-helpers-nextjs";
-import { Subscription, UserDetails } from "@/types/custom.types";
-import { create } from "zustand";
+import { use } from "react";
+import { useStore } from "zustand";
 
-export interface UserStore {
-  user: User | null;
-  userDetails: UserDetails | null;
-  subscription: Subscription | null;
+import { UserContext, UserState } from "@/providers/UserProvider";
+
+export function useUserStore<T>(selector: (state: UserState) => T): T {
+  const store = use(UserContext);
+
+  if (!store) {
+    throw new Error("useUserStore must be used within a UserProvider");
+  }
+
+  return useStore(store, selector);
 }
-
-export const useUserStore = create<UserStore>(() => ({
-  user: null,
-  userDetails: null,
-  subscription: null,
-}));

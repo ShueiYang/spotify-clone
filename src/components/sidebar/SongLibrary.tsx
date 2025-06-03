@@ -5,11 +5,12 @@ import { useUserStore } from "@/hooks/useUserStore";
 import { useUploadModal } from "@/hooks/useUploadModal";
 import { SvgIcon } from "../svg/SvgIcon";
 import { SidebarProps } from "./Sidebar";
+import { useOnPlay } from "@/hooks/useOnPlay";
 import MediaItem from "./MediaItem";
-import useOnPlay from "@/hooks/useOnPlay";
 
 export function SongLibrary({ userSongs }: Readonly<SidebarProps>) {
-  // Zustand custom hook
+  // --- Zustand custom hook ---
+
   const onOpenAuth = useAuthModal((state) => state.onOpen);
   const onOpenUpload = useUploadModal((state) => state.onOpen);
   const user = useUserStore((state) => state.user);

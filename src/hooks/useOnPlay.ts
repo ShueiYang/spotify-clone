@@ -1,21 +1,25 @@
+import { useShallow } from "zustand/shallow";
+
 import { Song } from "@/types/custom.types";
 import { usePlayerStore } from "./usePlayerStore";
 import { useAuthModal } from "./useAuthModal";
 import { useUserStore } from "./useUserStore";
 
-export default function useOnPlay(songs: Song[]) {
+export function useOnPlay(songs: Song[]) {
   const authModal = useAuthModal();
   const user = useUserStore((state) => state.user);
 
   const [setCurrentSongs, setIsActive, setCurrentIndex, setActiveSongId] =
-    usePlayerStore((state) => [
-      state.setCurrentSongs,
-      state.setIsActive,
-      state.setCurrentIndex,
-      state.setActiveSongId,
-    ]);
+    usePlayerStore(
+      useShallow((state) => [
+        state.setCurrentSongs,
+        state.setIsActive,
+        state.setCurrentIndex,
+        state.setActiveSongId,
+      ]),
+    );
 
-  const onPlay = (id: string) => {
+  function onPlay(id: string) {
     if (!user) {
       return authModal.onOpen();
     }
@@ -24,6 +28,7 @@ export default function useOnPlay(songs: Song[]) {
     setIsActive(true);
     setCurrentIndex(index);
     setActiveSongId(id);
-  };
+  }
+
   return onPlay;
 }

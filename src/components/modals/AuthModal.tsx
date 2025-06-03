@@ -1,32 +1,35 @@
 "use client";
 
-import { createClientSupabaseClient } from "@/supabase/client";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useShallow } from "zustand/shallow";
+import { Auth } from "@supabase/auth-ui-react";
 
-import Modal from "./Modal";
+import { createClientSupabaseClient } from "@/supabase/client";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useAuthModal } from "@/hooks/useAuthModal";
+import Modal from "./Modal";
 
-const AuthModal = () => {
+export function AuthModal() {
   const router = useRouter();
   const supabase = createClientSupabaseClient();
-  // Zustand custom hook
-  const [isOpen, onClose, view] = useAuthModal((state) => [
-    state.isOpen,
-    state.onClose,
-    state.view,
-  ]);
 
-  useEffect(() => {
-    supabase.auth.onAuthStateChange(async (event) => {
-      if (event === "SIGNED_IN") {
-        router.refresh();
-        onClose();
-      }
-    });
-  }, [router, onClose, supabase.auth]);
+  // --- Zustand custom hook ---
+  const [isOpen, onClose, view] = useAuthModal(
+    useShallow((state) => [state.isOpen, state.onClose, state.view]),
+  );
+
+  useEffect(
+    function handleAuthStateChange() {
+      supabase.auth.onAuthStateChange(async (event) => {
+        if (event === "SIGNED_IN") {
+          router.refresh();
+          onClose();
+        }
+      });
+    },
+    [router, onClose, supabase.auth],
+  );
 
   function onChange(open: boolean) {
     if (!open) {
@@ -66,6 +69,4 @@ const AuthModal = () => {
       />
     </Modal>
   );
-};
-
-export default AuthModal;
+}

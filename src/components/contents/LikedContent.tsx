@@ -3,7 +3,7 @@
 import { SongsContent } from "./HomeContent";
 import MediaItem from "@/components/sidebar/MediaItem";
 import { LikeButton } from "@/components/customButtons/LikeButton";
-import useOnPlay from "@/hooks/useOnPlay";
+import { useOnPlay } from "@/hooks/useOnPlay";
 import { PlayButton } from "@/components/customButtons/PlayButton";
 
 export default function LikedContent({ songs }: Readonly<SongsContent>) {

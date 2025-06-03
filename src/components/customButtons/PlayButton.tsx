@@ -1,3 +1,4 @@
+import { useShallow } from "zustand/shallow";
 import { twMerge } from "tailwind-merge";
 
 import { usePlayerStore } from "@/hooks/usePlayerStore";
@@ -14,14 +15,15 @@ export function PlayButton({
   className,
   onPlay,
 }: Readonly<PlayButtonProps>) {
-  // Zustand custom hook
+  // --- Zustand custom hook ---
+
   const [isPlaying, activeSongId, playPause, setIsExiting] = usePlayerStore(
-    (state) => [
+    useShallow((state) => [
       state.isPlaying,
       state.activeSongId,
       state.playPause,
       state.setIsExiting,
-    ],
+    ]),
   );
 
   const playIconName: SvgIconName =
