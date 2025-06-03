@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
@@ -9,10 +10,9 @@ import { toast } from "react-hot-toast";
 import { createClientSupabaseClient } from "@/supabase/client";
 import { ViewType, useAuthModal } from "@/hooks/useAuthModal";
 import { usePlayerStore } from "@/hooks/usePlayerStore";
-import { SvgIcon } from "./svg/SvgIcon";
 import { useUserStore } from "@/hooks/useUserStore";
+import { SvgIcon } from "./svg/SvgIcon";
 import Button from "@/components/customButtons/Button";
-import { useEffect } from "react";
 
 interface HeaderProps {
   session: Session | null;
@@ -36,11 +36,13 @@ export function Header({ session, className }: HeaderProps) {
 
   useEffect(
     function syncUserFromSession() {
-      if (!user && session?.user) {
+      if (session?.user && !user) {
         setUser(session.user);
+      } else if (!session && user) {
+        resetUserSession();
       }
     },
-    [session, user, setUser],
+    [session, user, setUser, resetUserSession],
   );
 
   // --- handlers ---
@@ -48,9 +50,8 @@ export function Header({ session, className }: HeaderProps) {
   async function handleLogout() {
     const supabase = createClientSupabaseClient();
     const { error } = await supabase.auth.signOut();
-    // reset any playing songs and session
+    // reset any playing songs state
     reset();
-    resetUserSession();
     router.refresh();
 
     if (error) {
