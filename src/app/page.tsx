@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header";
-import { getSession } from "@/supabase/auth";
+import { getUser } from "@/supabase/auth";
 import { getSongs } from "@/supabase/actions/getSongs";
 import ListItem from "@/components/ListItem";
 import HomeContent from "@/components/contents/HomeContent";
@@ -8,14 +8,14 @@ import { Footer } from "@/components/footer/Footer";
 export const revalidate = 0;
 
 export default async function Home() {
-  const session = await getSession();
+  const authUser = await getUser();
   const songs = await getSongs();
 
   return (
     <div className="flex w-full flex-col">
       <Header
         className="bg-gradient-to-b from-teal-700 to-teal-700/80"
-        session={session}
+        authUser={authUser}
       />
       <div className="bg-gradient w-full flex-1">
         <header className="px-6 pb-6">

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
-import { Session } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 
 import { createBrowserSupabaseClient } from "@/supabase/utils/client";
@@ -15,11 +15,11 @@ import { SvgIcon } from "./svg/SvgIcon";
 import Button from "@/components/customButtons/Button";
 
 interface HeaderProps {
-  session: Session | null;
+  authUser: User | null;
   className?: string;
 }
 
-export function Header({ session, className }: HeaderProps) {
+export function Header({ authUser, className }: HeaderProps) {
   const router = useRouter();
 
   // --- Zustand custom hook ---
@@ -30,19 +30,19 @@ export function Header({ session, className }: HeaderProps) {
 
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
-  const resetUserSession = useUserStore((state) => state.reset);
+  const resetUser = useUserStore((state) => state.reset);
 
   // --- effects ---
 
   useEffect(
-    function syncUserFromSession() {
-      if (session?.user && !user) {
-        setUser(session.user);
-      } else if (!session && user) {
-        resetUserSession();
+    function syncUserFromAuthenticatedUser() {
+      if (authUser && !user) {
+        setUser(authUser);
+      } else if (!authUser && user) {
+        resetUser();
       }
     },
-    [session, user, setUser, resetUserSession],
+    [authUser, user, setUser, resetUser],
   );
 
   // --- handlers ---
@@ -122,11 +122,11 @@ export function Header({ session, className }: HeaderProps) {
         </Link>
       </div>
       <div className="flex items-center justify-between gap-x-4">
-        {session ? (
+        {authUser ? (
           <div className="flex items-center gap-x-4">
-            {session.user.user_metadata.name && (
+            {authUser.user_metadata.name && (
               <span className="whitespace-nowrap">
-                {session.user.user_metadata.name}
+                {authUser.user_metadata.name}
               </span>
             )}
             <Link href="/account">

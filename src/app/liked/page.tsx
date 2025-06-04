@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import { Header } from "@/components/Header";
-import { getSession } from "@/supabase/auth";
+import { getUser } from "@/supabase/auth";
 import { getFavoriteSongs } from "@/supabase/actions/getLikedSongs";
 import LikedContent from "@/components/contents/LikedContent";
 import { Footer } from "@/components/footer/Footer";
@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default async function LikedPage() {
-  const session = await getSession();
-  const songs = await getFavoriteSongs(session);
+  const authUser = await getUser();
+  const songs = await getFavoriteSongs(authUser);
 
   return (
     <div className="flex w-full flex-col">
       <Header
         className="bg-gradient-to-b from-teal-700 to-teal-700/80"
-        session={session}
+        authUser={authUser}
       />
       <div className="bg-gradient w-full flex-1 pt-10 md:pt-14">
         <header className="flex flex-col items-center gap-x-5 px-6 pb-6 md:flex-row">
