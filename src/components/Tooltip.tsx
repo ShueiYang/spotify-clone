@@ -23,7 +23,7 @@ export default function TooltipMenu({
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="TooltipContent"
+            className="tooltipContent"
             sideOffset={5}
           >
             {content}

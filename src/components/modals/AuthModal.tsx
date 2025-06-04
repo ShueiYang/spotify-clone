@@ -8,7 +8,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { createBrowserSupabaseClient } from "@/supabase/utils/client";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useAuthModal } from "@/hooks/useAuthModal";
-import Modal from "./Modal";
+import { Modal } from "./Modal";
 
 export function AuthModal() {
   const router = useRouter();

@@ -3,7 +3,7 @@
 import { Price, ProductWithPrice } from "@/types/custom.types";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
-import Modal from "./Modal";
+import { Modal } from "./Modal";
 import Button from "@/components/customButtons/Button";
 import { formatPrice, postData } from "@/libs/helpers";
 import { useUserStore } from "@/hooks/useUserStore";

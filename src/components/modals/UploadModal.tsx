@@ -1,6 +1,6 @@
 "use client";
 
-import uniqid from "uniqid";
+import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -10,7 +10,7 @@ import { useUploadModal } from "@/hooks/useUploadModal";
 import { useUserStore } from "@/hooks/useUserStore";
 import { UploadForm } from "@/types/custom.types";
 
-import Modal from "./Modal";
+import { Modal } from "./Modal";
 import InputForm from "@/components/customInputs/InputForm";
 import Button from "@/components/customButtons/Button";
 
@@ -50,7 +50,7 @@ export function UploadModal() {
       if (!songFile || !imageFile || !user) {
         return toast.error("Missing parameter");
       }
-      const uniqueID = uniqid();
+      const uniqueID = nanoid(8);
 
       // upload song
       const { data: songData, error: songError } = await supabase.storage

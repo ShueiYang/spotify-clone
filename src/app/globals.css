@@ -19,7 +19,7 @@
     @apply cursor-pointer pb-2 text-neutral-400 underline-offset-2 hover:text-neutral-200 hover:underline;
   }
 
-  .TooltipContent {
+  .tooltipContent {
     border-radius: 4px;
     padding: 8px 10px;
     font-size: 14px;
@@ -58,13 +58,13 @@
     }
   }
 
-  .DialogOverlay[data-state="open"],
-  .DialogContent[data-state="open"] {
+  .dialogOverlay[data-state="open"],
+  .dialogContent[data-state="open"] {
     animation: fadeIn 300ms ease-out;
   }
 
-  .DialogOverlay[data-state="closed"],
-  .DialogContent[data-state="closed"] {
+  .dialogOverlay[data-state="closed"],
+  .dialogContent[data-state="closed"] {
     animation: fadeOut 300ms ease-in;
   }
 
@@ -113,16 +113,16 @@
     }
   }
 
-  .TooltipContent[data-state="delayed-open"][data-side="top"] {
+  .tooltipContent[data-state="delayed-open"][data-side="top"] {
     animation-name: slideDownAndFade;
   }
-  .TooltipContent[data-state="delayed-open"][data-side="right"] {
+  .tooltipContent[data-state="delayed-open"][data-side="right"] {
     animation-name: slideLeftAndFade;
   }
-  .TooltipContent[data-state="delayed-open"][data-side="bottom"] {
+  .tooltipContent[data-state="delayed-open"][data-side="bottom"] {
     animation-name: slideUpAndFade;
   }
-  .TooltipContent[data-state="delayed-open"][data-side="left"] {
+  .tooltipContent[data-state="delayed-open"][data-side="left"] {
     animation-name: slideRightAndFade;
   }
 }
