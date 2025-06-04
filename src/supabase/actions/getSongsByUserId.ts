@@ -1,8 +1,9 @@
 import { Song } from "@/types/custom.types";
-import { createServerSupabaseClient, getSession } from "@/supabase/server";
+import { createServerSupabaseClient } from "@/supabase/utils/server";
+import { getSession } from "@/supabase/auth";
 
-export default async function getSongsByUserId(): Promise<Song[]> {
-  const supabase = createServerSupabaseClient();
+export async function getSongsByUserId(): Promise<Song[]> {
+  const supabase = await createServerSupabaseClient();
   const session = await getSession();
 
   if (!session) {

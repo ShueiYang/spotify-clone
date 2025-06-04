@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
-import { getSession } from "@/supabase/server";
-import getSongs from "@/supabase/actions/getSongs";
+import { getSession } from "@/supabase/auth";
+import { getSongs } from "@/supabase/actions/getSongs";
 import ListItem from "@/components/ListItem";
 import HomeContent from "@/components/contents/HomeContent";
 import { Footer } from "@/components/footer/Footer";

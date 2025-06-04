@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import { useShallow } from "zustand/shallow";
 import { Auth } from "@supabase/auth-ui-react";
 
-import { createClientSupabaseClient } from "@/supabase/client";
+import { createBrowserSupabaseClient } from "@/supabase/utils/client";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import Modal from "./Modal";
 
 export function AuthModal() {
   const router = useRouter();
-  const supabase = createClientSupabaseClient();
+  const supabase = createBrowserSupabaseClient();
 
   // --- Zustand custom hook ---
   const [isOpen, onClose, view] = useAuthModal(

@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
-import { Session } from "@supabase/auth-helpers-nextjs";
+import { Session } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 
-import { createClientSupabaseClient } from "@/supabase/client";
+import { createBrowserSupabaseClient } from "@/supabase/utils/client";
 import { ViewType, useAuthModal } from "@/hooks/useAuthModal";
 import { usePlayerStore } from "@/hooks/usePlayerStore";
 import { useUserStore } from "@/hooks/useUserStore";
@@ -48,7 +48,7 @@ export function Header({ session, className }: HeaderProps) {
   // --- handlers ---
 
   async function handleLogout() {
-    const supabase = createClientSupabaseClient();
+    const supabase = createBrowserSupabaseClient();
     const { error } = await supabase.auth.signOut();
     // reset any playing songs state
     reset();

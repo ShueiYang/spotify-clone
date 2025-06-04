@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 import { Header } from "@/components/Header";
-import { getSession } from "@/supabase/server";
-import getSongsByTitle from "@/supabase/actions/getSongsByTitle";
+import { getSession } from "@/supabase/auth";
+import { getSongsByTitle } from "@/supabase/actions/getSongsByTitle";
 import SearchInput from "@/components/customInputs/SearchInput";
 import SearchContent from "@/components/contents/SearchContent";
 import { Footer } from "@/components/footer/Footer";

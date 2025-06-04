@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-import { createClientSupabaseClient } from "@/supabase/client";
 import { toast } from "react-hot-toast";
+
+import { createBrowserSupabaseClient } from "@/supabase/utils/client";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { useUserStore } from "@/hooks/useUserStore";
 import { useRouter } from "next/navigation";
@@ -24,11 +24,11 @@ export function LikeButton({ songId }: Readonly<LikeButtonProps>) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    if (!user?.id) {
-      return;
-    }
-    const fetchFavoriteSong = async () => {
-      const supabase = createClientSupabaseClient();
+    async function fetchFavoriteSong() {
+      if (!user?.id) {
+        return;
+      }
+      const supabase = createBrowserSupabaseClient();
       const { data, error } = await supabase
         .from("favorite_songs")
         .select("*")
@@ -40,12 +40,13 @@ export function LikeButton({ songId }: Readonly<LikeButtonProps>) {
       } else {
         setIsLiked(false);
       }
-    };
+    }
+
     fetchFavoriteSong();
-  }, [user?.id, songId]);
+  }, [user, songId]);
 
   async function handleLike() {
-    const supabase = createClientSupabaseClient();
+    const supabase = createBrowserSupabaseClient();
 
     if (!user) {
       return onOpen();

@@ -2,18 +2,19 @@
 
 import uniqid from "uniqid";
 import { useRouter } from "next/navigation";
-import { createClientSupabaseClient } from "@/supabase/client";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+
+import { createBrowserSupabaseClient } from "@/supabase/utils/client";
 import { useUploadModal } from "@/hooks/useUploadModal";
 import { useUserStore } from "@/hooks/useUserStore";
+import { UploadForm } from "@/types/custom.types";
 
 import Modal from "./Modal";
 import InputForm from "@/components/customInputs/InputForm";
 import Button from "@/components/customButtons/Button";
-import { UploadForm } from "@/types/custom.types";
 
-const UploadModal = () => {
+export function UploadModal() {
   const router = useRouter();
   const isOpen = useUploadModal((state) => state.isOpen);
   const onClose = useUploadModal((state) => state.onClose);
@@ -41,7 +42,7 @@ const UploadModal = () => {
   }
 
   async function onSubmit(values: UploadForm) {
-    const supabase = createClientSupabaseClient();
+    const supabase = createBrowserSupabaseClient();
     try {
       const songFile = values.song?.[0];
       const imageFile = values.image?.[0];
@@ -154,6 +155,4 @@ const UploadModal = () => {
       </form>
     </Modal>
   );
-};
-
-export default UploadModal;
+}

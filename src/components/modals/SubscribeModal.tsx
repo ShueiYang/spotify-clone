@@ -10,7 +10,7 @@ import { useUserStore } from "@/hooks/useUserStore";
 import { getStripe } from "@/libs/stripeClient";
 import { useSubscribeModal } from "@/hooks/useSubscribeModal";
 
-const SubscribeModal = ({ products }: { products: ProductWithPrice[] }) => {
+export function SubscribeModal({ products }: { products: ProductWithPrice[] }) {
   const [isPending, setIsPending] = useState(false);
 
   const subscribeModal = useSubscribeModal();
@@ -72,6 +72,4 @@ const SubscribeModal = ({ products }: { products: ProductWithPrice[] }) => {
       )}
     </Modal>
   );
-};
-
-export default SubscribeModal;
+}

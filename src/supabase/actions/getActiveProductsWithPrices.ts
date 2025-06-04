@@ -1,10 +1,10 @@
-import { createServerSupabaseClient } from "@/supabase/server";
+import { createServerSupabaseClient } from "@/supabase/utils/server";
 import { ProductWithPrice } from "@/types/custom.types";
 
-export default async function getActiveProductsWithPrices(): Promise<
+export async function getActiveProductsWithPrices(): Promise<
   ProductWithPrice[]
 > {
-  const supabase = createServerSupabaseClient();
+  const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase
     .from("products")
     .select("*, prices(*)")

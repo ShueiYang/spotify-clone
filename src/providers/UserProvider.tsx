@@ -2,8 +2,8 @@
 
 import { createContext, useRef } from "react";
 import { createStore } from "zustand";
+import { User } from "@supabase/supabase-js";
 
-import { User } from "@supabase/auth-helpers-nextjs";
 import { Subscription, UserDetails } from "@/types/custom.types";
 
 interface UserInitState {

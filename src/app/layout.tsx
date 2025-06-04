@@ -3,10 +3,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 
-import { getSubscribInfo, getUser } from "@/supabase/server";
-import getSongsByUserId from "@/supabase/actions/getSongsByUserId";
-import getActiveProductsWithPrices from "@/supabase/actions/getActiveProductsWithPrices";
-
+import { getUser } from "@/supabase/auth";
+import { getSongsByUserId } from "@/supabase/actions/getSongsByUserId";
+import { getActiveProductsWithPrices } from "@/supabase/actions/getActiveProductsWithPrices";
+import { getSubscriptionInfo } from "@/supabase/subscription";
 import { UserProvider } from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
@@ -34,7 +34,7 @@ export default async function RootLayout({
   const user = await getUser();
   const userSongs = await getSongsByUserId();
   const products = await getActiveProductsWithPrices();
-  const result = await getSubscribInfo(user);
+  const result = await getSubscriptionInfo(user);
 
   return (
     <html lang="en">

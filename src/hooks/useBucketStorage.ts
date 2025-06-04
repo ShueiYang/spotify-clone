@@ -1,8 +1,8 @@
-import { createClientSupabaseClient } from "@/supabase/client";
+import { createBrowserSupabaseClient } from "@/supabase/utils/client";
 import { Song } from "@/types/custom.types";
 
-export const useLoadImageUrl = (song: Song) => {
-  const supabase = createClientSupabaseClient();
+export function useLoadImageUrl(song: Song) {
+  const supabase = createBrowserSupabaseClient();
   if (!song) {
     return null;
   }
@@ -11,10 +11,10 @@ export const useLoadImageUrl = (song: Song) => {
     .getPublicUrl(song.image_path);
 
   return imageData.publicUrl;
-};
+}
 
-export const useLoadSongUrl = (song: Song) => {
-  const supabase = createClientSupabaseClient();
+export function useLoadSongUrl(song: Song) {
+  const supabase = createBrowserSupabaseClient();
   if (!song) {
     return null;
   }
@@ -23,4 +23,4 @@ export const useLoadSongUrl = (song: Song) => {
     .getPublicUrl(song.song_path);
 
   return songData.publicUrl;
-};
+}

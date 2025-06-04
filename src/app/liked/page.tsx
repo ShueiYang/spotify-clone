@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import { Header } from "@/components/Header";
-import { getSession } from "@/supabase/server";
-import getFavoriteSongs from "@/supabase/actions/getLikedSongs";
+import { getSession } from "@/supabase/auth";
+import { getFavoriteSongs } from "@/supabase/actions/getLikedSongs";
 import LikedContent from "@/components/contents/LikedContent";
 import { Footer } from "@/components/footer/Footer";
 

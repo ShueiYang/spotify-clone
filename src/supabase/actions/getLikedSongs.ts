@@ -1,14 +1,14 @@
+import { Session } from "@supabase/supabase-js";
+import { createServerSupabaseClient } from "@/supabase/utils/server";
 import { Song } from "@/types/custom.types";
-import { Session } from "@supabase/auth-helpers-nextjs";
-import { createServerSupabaseClient } from "@/supabase/server";
 
-export default async function getFavoriteSongs(
+export async function getFavoriteSongs(
   session: Session | null,
 ): Promise<Song[]> {
   if (!session) {
     return [];
   }
-  const supabase = createServerSupabaseClient();
+  const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase
     .from("favorite_songs")
     .select("*, songs(*)")

@@ -1,8 +1,8 @@
+import { createServerSupabaseClient } from "@/supabase/utils/server";
 import { Song } from "@/types/custom.types";
-import { createServerSupabaseClient } from "@/supabase/server";
 
-export default async function getSongs(): Promise<Song[]> {
-  const supabase = createServerSupabaseClient();
+export async function getSongs(): Promise<Song[]> {
+  const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase
     .from("songs")
     .select("*")
