@@ -1,16 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@reference "tailwindcss";
 
 @layer components {
   .play-btn {
     @apply flex items-center rounded-full bg-green-500 p-4 opacity-0 drop-shadow-md transition hover:scale-110 group-hover:opacity-100;
   }
   .bg-gradient {
-    @apply bg-gradient-to-b from-teal-700/80 via-neutral-900 via-20% to-neutral-900/95;
+    @apply bg-linear-to-b from-teal-700/80 via-neutral-900 via-20% to-neutral-900/95;
   }
   .bg-gradient-black {
-    @apply bg-gradient-to-b from-neutral-900 to-neutral-900/95;
+    @apply bg-linear-to-b from-neutral-900 to-neutral-900/95;
   }
   .section-container {
     @apply h-full flex-1 overflow-x-auto border-y-8 border-black px-2 md:pl-0;
