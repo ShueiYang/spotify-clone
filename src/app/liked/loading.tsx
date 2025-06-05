@@ -7,7 +7,7 @@ export default function LikeLoader() {
       baseColor="#303030"
       highlightColor="#525252"
     >
-      <Box className="flex h-auto flex-col items-center justify-center bg-gradient-to-b from-teal-700 via-neutral-900 via-20% to-neutral-900/95">
+      <Box className="flex h-auto flex-col items-center justify-center bg-linear-to-b from-teal-700 via-neutral-900 via-20% to-neutral-900/95">
         <div className="mt-32 flex w-full flex-col items-center gap-x-5 px-6 pb-6 md:flex-row">
           <div className="relative h-32 w-32 lg:h-44 lg:w-44">
             <Skeleton
@@ -30,7 +30,7 @@ export default function LikeLoader() {
             </h1>
           </div>
         </div>
-        <div className="mb-7 mt-2 w-full px-6">
+        <div className="mt-2 mb-7 w-full px-6">
           <div className="flex w-full flex-col gap-y-2">
             {[...new Array(16)].map((_, index) => {
               return (

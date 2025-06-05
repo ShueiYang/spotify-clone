@@ -42,7 +42,7 @@ export function SongLibrary({ userSongs }: Readonly<SidebarProps>) {
           className="cursor-pointer text-neutral-400 transition hover:text-white"
         />
       </div>
-      <div className="mb-36 mt-4 flex flex-col gap-y-2 px-3">
+      <div className="mt-4 mb-36 flex flex-col gap-y-2 px-3">
         {userSongs.map((song) => (
           <MediaItem
             key={song.id}

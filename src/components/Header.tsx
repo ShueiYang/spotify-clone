@@ -151,7 +151,7 @@ export function Header({ authUser, className }: HeaderProps) {
             </Button>
             <Button
               onClick={() => handleOpen("sign_up")}
-              className="whitespace-nowrap bg-transparent px-6 py-2 font-medium text-neutral-300 hover:text-white hover:opacity-100"
+              className="bg-transparent px-6 py-2 font-medium whitespace-nowrap text-neutral-300 hover:text-white hover:opacity-100"
             >
               Sign up
             </Button>

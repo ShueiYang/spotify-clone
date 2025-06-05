@@ -1,10 +1,11 @@
 "use client";
 
-import queryString from "query-string";
-import { useSearchDebounce } from "@/hooks/useDebounce";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import InputForm from "./InputForm";
+import queryString from "query-string";
+import { useRouter } from "next/navigation";
+
+import { useSearchDebounce } from "@/hooks/useDebounce";
+import { InputForm } from "./InputForm";
 
 const SearchInput = () => {
   const router = useRouter();

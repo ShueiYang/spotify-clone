@@ -24,8 +24,8 @@ export function Modal({
     >
       {/* <Dialog.Trigger /> */}
       <Dialog.Portal>
-        <Dialog.Overlay className="dialogOverlay fixed inset-0 z-20 bg-neutral-900/90 backdrop-blur-sm" />
-        <Dialog.Content className="dialogContent fixed left-[50%] top-[50%] z-30 h-full w-full translate-x-[-50%] translate-y-[-50%] rounded-md border border-neutral-700 bg-neutral-800 p-6 drop-shadow-md focus:outline-none md:h-auto md:max-h-[750px] md:w-[90vw] md:max-w-[450px]">
+        <Dialog.Overlay className="dialogOverlay fixed inset-0 z-20 bg-neutral-900/90 backdrop-blur-xs" />
+        <Dialog.Content className="dialogContent fixed top-[50%] left-[50%] z-30 h-full w-full translate-x-[-50%] translate-y-[-50%] rounded-md border border-neutral-700 bg-neutral-800 p-6 drop-shadow-md focus:outline-hidden md:h-auto md:max-h-[750px] md:w-[90vw] md:max-w-[450px]">
           <Dialog.Title className="mb-4 text-center text-xl font-bold">
             {title}
           </Dialog.Title>
@@ -38,7 +38,7 @@ export function Modal({
           <Dialog.Close asChild>
             <button
               type="button"
-              className="absolute right-[10px] top-[10px] inline-flex h-6 w-6 appearance-none items-center justify-center rounded-full text-neutral-400 hover:text-white focus:outline-none"
+              className="absolute top-[10px] right-[10px] inline-flex h-6 w-6 appearance-none items-center justify-center rounded-full text-neutral-400 hover:text-white focus:outline-hidden"
             >
               <SvgIcon
                 name="XIcon"

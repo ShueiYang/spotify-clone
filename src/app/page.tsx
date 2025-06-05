@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <div className="flex w-full flex-col">
       <Header
-        className="bg-gradient-to-b from-teal-700 to-teal-700/80"
+        className="bg-linear-to-b from-teal-700 to-teal-700/80"
         authUser={authUser}
       />
       <div className="bg-gradient w-full flex-1">
@@ -28,7 +28,7 @@ export default async function Home() {
             />
           </div>
         </header>
-        <div className="mb-7 mt-4 px-6">
+        <div className="mt-4 mb-7 px-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-white">
               Spotify Playlists

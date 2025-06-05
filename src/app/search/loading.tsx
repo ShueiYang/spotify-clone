@@ -21,7 +21,7 @@ export default function Loader() {
             />
           </div>
         </div>
-        <div className="mb-7 mt-10 w-full px-6">
+        <div className="mt-10 mb-7 w-full px-6">
           <div className="flex w-full flex-col gap-y-2">
             {[...new Array(16)].map((_, index) => {
               return (
