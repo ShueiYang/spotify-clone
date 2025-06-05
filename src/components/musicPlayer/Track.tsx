@@ -10,19 +10,18 @@ interface TrackProps {
   song: Song;
 }
 
-const Track: React.FC<TrackProps> = ({ isPlaying, isActive, song }) => {
+export function Track({ isPlaying, isActive, song }: Readonly<TrackProps>) {
   const imageUrl = useLoadImageUrl(song);
 
   return (
     <div className="flex max-w-[50%] items-center justify-start lg:basis-1/3">
       <div
-        className={`${isPlaying && isActive ? "animate-[spin_3s_linear_infinite]" : ""}
-         relative mr-4 hidden h-16 w-16 sm:block`}
+        className={`${isPlaying && isActive ? "animate-[spin_3s_linear_infinite]" : ""} relative mr-4 hidden h-16 w-16 sm:block`}
       >
         <Image
           src={imageUrl || "/images/music-placeholder.png"}
           alt="cover art"
-          className="rounded-full object-cover "
+          className="rounded-full object-cover"
           fill
           sizes="(max-width: 64px) 100vw"
         />
@@ -34,6 +33,4 @@ const Track: React.FC<TrackProps> = ({ isPlaying, isActive, song }) => {
       <LikeButton songId={song.id} />
     </div>
   );
-};
-
-export default Track;
+}

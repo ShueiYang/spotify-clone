@@ -7,7 +7,7 @@ export default function MainLoader() {
       baseColor="#303030"
       highlightColor="#525252"
     >
-      <Box className="flex h-auto flex-col items-center justify-center bg-gradient-to-b from-teal-700 via-neutral-900 via-20% to-neutral-900/95">
+      <Box className="flex h-auto flex-col items-center justify-center bg-linear-to-b from-teal-700 via-neutral-900 via-20% to-neutral-900/95">
         <div className="mt-14 w-full p-6">
           <Skeleton
             width={200}
@@ -21,7 +21,7 @@ export default function MainLoader() {
             />
           </div>
         </div>
-        <div className="mb-7 mt-2 w-full px-6">
+        <div className="mt-2 mb-7 w-full px-6">
           <Skeleton
             width={155}
             height={32}

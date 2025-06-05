@@ -20,7 +20,7 @@ export default async function LikedPage() {
   return (
     <div className="flex w-full flex-col">
       <Header
-        className="bg-gradient-to-b from-teal-700 to-teal-700/80"
+        className="bg-linear-to-b from-teal-700 to-teal-700/80"
         authUser={authUser}
       />
       <div className="bg-gradient w-full flex-1 pt-10 md:pt-14">

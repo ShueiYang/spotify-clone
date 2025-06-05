@@ -11,7 +11,7 @@ import { useUserStore } from "@/hooks/useUserStore";
 import { UploadForm } from "@/types/custom.types";
 
 import { Modal } from "./Modal";
-import InputForm from "@/components/customInputs/InputForm";
+import { InputForm } from "@/components/customInputs/InputForm";
 import Button from "@/components/customButtons/Button";
 
 export function UploadModal() {

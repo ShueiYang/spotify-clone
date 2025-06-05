@@ -35,7 +35,7 @@ export function Footer() {
               <h3 className="mb-2">Source Code</h3>
               <a
                 href="https://github.com/ShueiYang/spotify-clone"
-                className="flex items-center gap-x-1.5 py-1"
+                className="flex gap-x-1.5 py-1"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -44,7 +44,7 @@ export function Footer() {
                   height={21}
                   fill="#FFF"
                 />
-                <span className="item-link pb-0">GitHub</span>
+                <span className="item-link">GitHub</span>
               </a>
             </div>
             <div className="mt-4">
@@ -92,13 +92,13 @@ export function Footer() {
 
       <div className="mx-6 my-8">
         <div className="flex flex-col justify-between gap-x-12 gap-y-4 border-t border-neutral-400/50 py-8 lg:flex-row">
-          <p className="whitespace-nowrap text-sm text-neutral-400">
+          <p className="text-sm whitespace-nowrap text-neutral-400">
             &copy;{new Date().getFullYear()} Spotify clone by Shueiyang
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {NAVIGATION_FOOTER.map((item) => (
               <ul key={item.title}>
-                <li className="item-link whitespace-nowrap pb-0 text-sm">
+                <li className="item-link pb-0 text-sm whitespace-nowrap">
                   {item.title}
                 </li>
               </ul>

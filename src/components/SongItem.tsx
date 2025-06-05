@@ -16,10 +16,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
   const imagePath = useLoadImageUrl(data);
 
   return (
-    <div
-      className="group relative flex flex-col items-center justify-center gap-x-4 overflow-hidden 
-      rounded-md bg-neutral-400/5 p-3 transition hover:bg-neutral-400/10"
-    >
+    <div className="group relative flex flex-col items-center justify-center gap-x-4 overflow-hidden rounded-md bg-neutral-400/5 p-3 transition hover:bg-neutral-400/10">
       <div className="relative aspect-square h-auto w-full overflow-hidden rounded-md">
         <Image
           className="object-cover"
@@ -35,7 +32,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onPlayClick }) => {
           <p className="line-clamp-2">By {data.author}</p>
         </div>
       </div>
-      <div className="absolute bottom-24 right-5">
+      <div className="absolute right-5 bottom-24">
         <PlayButton
           songId={data.id as string}
           className="translate-y-1/4 group-hover:translate-y-0"

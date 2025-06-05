@@ -27,7 +27,7 @@ export default function AccountLoader() {
             />
           </div>
         </div>
-        <div className="mb-7 mt-10 w-full flex-1 px-6"></div>
+        <div className="mt-10 mb-7 w-full flex-1 px-6"></div>
       </Box>
     </SkeletonTheme>
   );

@@ -6,7 +6,7 @@ import { useShallow } from "zustand/shallow";
 import { usePlayerStore } from "@/hooks/usePlayerStore";
 import { useLoadSongUrl } from "@/hooks/useBucketStorage";
 import { SvgIcon } from "../svg/SvgIcon";
-import Track from "./Track";
+import { Track } from "./Track";
 import { Controls } from "./Controls";
 import Seekbar from "./Seekbar";
 import { Player } from "./Player";
@@ -123,8 +123,7 @@ export default function MusicPlayer() {
 
   return (
     <div
-      className={`absolute inset-x-2 bottom-0 z-10 flex h-[100px] bg-gradient-to-br from-slate-700 to-fuchsia-700/40 backdrop-blur-lg 
-      ${isExiting ? "animate-slidedown" : "animate-slideup"}`}
+      className={`absolute inset-x-2 bottom-0 z-10 flex h-[100px] bg-linear-to-br from-slate-700 to-fuchsia-700/40 backdrop-blur-lg ${isExiting ? "animate-slidedown" : "animate-slideup"}`}
     >
       <div
         className="relative flex w-full items-center justify-between px-8 sm:px-12"
@@ -133,7 +132,7 @@ export default function MusicPlayer() {
         <SvgIcon
           name="XIcon"
           size={20}
-          className="absolute right-1 top-2 cursor-pointer text-gray-300 hover:text-white"
+          className="absolute top-2 right-1 cursor-pointer text-gray-300 hover:text-white"
           onClick={() => setIsExiting(true)}
         />
 
