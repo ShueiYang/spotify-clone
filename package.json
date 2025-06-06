@@ -1,6 +1,6 @@
 {
   "name": "spotify-clone",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "@stripe/stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^7.3.1",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/ssr": "^0.6.1",
@@ -25,14 +25,14 @@
     "lucide-react": "^0.511.0",
     "nanoid": "^5.1.5",
     "next": "^15.3.3",
-    "query-string": "^8.2.0",
+    "query-string": "^9.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.56.4",
     "react-hot-toast": "^2.5.2",
     "react-loading-skeleton": "^3.5.0",
     "sharp": "^0.32.6",
-    "stripe": "^12.18.0",
+    "stripe": "^18.2.1",
     "tailwind-merge": "^3.3.0",
     "zustand": "^5.0.5"
   },

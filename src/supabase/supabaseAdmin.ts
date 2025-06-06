@@ -162,10 +162,10 @@ export async function manageSubscriptionStatusChange(
         ? toDateTime(subscription.canceled_at).toISOString()
         : null,
       current_period_start: toDateTime(
-        subscription.current_period_start,
+        subscription.items.data[0].current_period_start,
       ).toISOString(),
       current_period_end: toDateTime(
-        subscription.current_period_end,
+        subscription.items.data[0].current_period_end,
       ).toISOString(),
       created: toDateTime(subscription.created).toISOString(),
       ended_at: subscription.ended_at

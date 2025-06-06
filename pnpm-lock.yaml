@@ -15,8 +15,8 @@ importers:
         specifier: ^1.2.7
         version: 1.2.7(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@stripe/stripe-js':
-        specifier: ^2.4.0
-        version: 2.4.0
+        specifier: ^7.3.1
+        version: 7.3.1
       '@supabase/auth-ui-react':
         specifier: ^0.4.7
         version: 0.4.7(@supabase/supabase-js@2.49.10)
@@ -48,8 +48,8 @@ importers:
         specifier: ^15.3.3
         version: 15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       query-string:
-        specifier: ^8.2.0
-        version: 8.2.0
+        specifier: ^9.2.0
+        version: 9.2.0
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -69,8 +69,8 @@ importers:
         specifier: ^0.32.6
         version: 0.32.6
       stripe:
-        specifier: ^12.18.0
-        version: 12.18.0
+        specifier: ^18.2.1
+        version: 18.2.1(@types/node@22.15.27)
       tailwind-merge:
         specifier: ^3.3.0
         version: 3.3.0
@@ -1112,8 +1112,9 @@ packages:
   '@stitches/core@1.2.8':
     resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
 
-  '@stripe/stripe-js@2.4.0':
-    resolution: {integrity: sha512-WFkQx1mbs2b5+7looI9IV1BLa3bIApuN3ehp9FP58xGg7KL9hCHDECgW3BwO9l9L+xBPVAD7Yjn1EhGe6EDTeA==}
+  '@stripe/stripe-js@7.3.1':
+    resolution: {integrity: sha512-pTzb864TQWDRQBPLgSPFRoyjSDUqpCkbEgTzpsjiTjGz1Z5SxZNXJek28w1s6Dyry4CyW4/Izj5jHE/J9hCJYQ==}
+    engines: {node: '>=12.16'}
 
   '@supabase/auth-js@2.69.1':
     resolution: {integrity: sha512-FILtt5WjCNzmReeRLq5wRs3iShwmnWgBvxHfqapC/VoljJl+W8hDAyFmf1NVw3zH+ZjZ05AKxiKxVeb0HNWRMQ==}
@@ -3011,9 +3012,9 @@ packages:
     resolution: {integrity: sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==}
     engines: {node: '>=0.6'}
 
-  query-string@8.2.0:
-    resolution: {integrity: sha512-tUZIw8J0CawM5wyGBiDOAp7ObdRQh4uBor/fUR9ZjmbZVvw95OD9If4w3MQxr99rg0DJZ/9CIORcpEqU5hQG7g==}
-    engines: {node: '>=14.16'}
+  query-string@9.2.0:
+    resolution: {integrity: sha512-YIRhrHujoQxhexwRLxfy3VSjOXmvZRd2nyw1PwL1UUqZ/ys1dEZd1+NSgXkne2l/4X/7OXkigEAuhTX0g/ivJQ==}
+    engines: {node: '>=18'}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -3342,9 +3343,14 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  stripe@12.18.0:
-    resolution: {integrity: sha512-cYjgBM2SY/dTm8Lr6eMyyONaHTZHA/QjHxFUIW5WH8FevSRIGAVtXEmBkUXF1fsqe7QvvRgQSGSJZmjDacegGg==}
+  stripe@18.2.1:
+    resolution: {integrity: sha512-GwB1B7WSwEBzW4dilgyJruUYhbGMscrwuyHsPUmSRKrGHZ5poSh2oU9XKdii5BFVJzXHn35geRvGJ6R8bYcp8w==}
     engines: {node: '>=12.*'}
+    peerDependencies:
+      '@types/node': '>=12.x.x'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
 
   styled-jsx@5.1.6:
     resolution: {integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==}
@@ -4598,7 +4604,7 @@ snapshots:
 
   '@stitches/core@1.2.8': {}
 
-  '@stripe/stripe-js@2.4.0': {}
+  '@stripe/stripe-js@7.3.1': {}
 
   '@supabase/auth-js@2.69.1':
     dependencies:
@@ -6699,7 +6705,7 @@ snapshots:
     dependencies:
       side-channel: 1.1.0
 
-  query-string@8.2.0:
+  query-string@9.2.0:
     dependencies:
       decode-uri-component: 0.4.1
       filter-obj: 5.1.0
@@ -7132,10 +7138,11 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  stripe@12.18.0:
+  stripe@18.2.1(@types/node@22.15.27):
     dependencies:
-      '@types/node': 22.15.27
       qs: 6.14.0
+    optionalDependencies:
+      '@types/node': 22.15.27
 
   styled-jsx@5.1.6(@babel/core@7.27.4)(react@19.1.0):
     dependencies:

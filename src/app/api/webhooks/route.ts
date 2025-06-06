@@ -23,16 +23,20 @@ const relevantEvents = new Set([
 export async function POST(request: Request) {
   try {
     const body = await request.text();
-    const headersList = await headers();
-    const sig = headersList.get("Stripe-Signature");
+    const reqHeaders = await headers();
+    const signature = reqHeaders.get("Stripe-Signature");
 
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-    if (!sig || !webhookSecret) {
+    if (!signature || !webhookSecret) {
       throw { status: 400, message: "Missing parameter" };
     }
 
-    const event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+    const event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      webhookSecret,
+    );
 
     if (relevantEvents.has(event.type)) {
       switch (event.type) {
