@@ -3,7 +3,6 @@ import { createClient } from "@supabase/supabase-js";
 
 import { Database } from "./database.types";
 import { CustomerDataProps, Price, Product } from "@/types/custom.types";
-
 import { stripe } from "@/libs/stripe";
 import { toDateTime } from "@/libs/helpers";
 
@@ -15,7 +14,7 @@ export const supabaseAdmin = createClient<Database>(
   },
 );
 
-const upsertProductRecord = async (product: Stripe.Product) => {
+export async function upsertProductRecord(product: Stripe.Product) {
   const productData: Product = {
     id: product.id,
     active: product.active,
@@ -31,9 +30,9 @@ const upsertProductRecord = async (product: Stripe.Product) => {
     throw error;
   }
   console.log(`Product inserted/updated: ${product.id}`);
-};
+}
 
-const upsertPriceRecord = async (price: Stripe.Price) => {
+export async function upsertPriceRecord(price: Stripe.Price) {
   const priceData: Price = {
     id: price.id,
     product_id: typeof price.product === "string" ? price.product : "",
@@ -53,15 +52,15 @@ const upsertPriceRecord = async (price: Stripe.Price) => {
     throw error;
   }
   console.log(`Price inserted/updated: ${price.id}`);
-};
+}
 
-const createOrRetrieveCustomer = async ({
+export async function createOrRetrieveCustomer({
   email,
   uuid,
 }: {
   email: string;
   uuid: string;
-}) => {
+}) {
   const { data, error } = await supabaseAdmin
     .from("customers")
     .select("stripe_customer_id")
@@ -95,12 +94,12 @@ const createOrRetrieveCustomer = async ({
     return customer.id;
   }
   return data.stripe_customer_id;
-};
+}
 
-const copyBillingDetailsToCustomer = async (
+async function copyBillingDetailsToCustomer(
   uuid: string,
   paymentMethod: Stripe.PaymentMethod,
-) => {
+) {
   const customer = paymentMethod.customer as string;
   const { name, phone, address } = paymentMethod.billing_details;
 
@@ -125,13 +124,13 @@ const copyBillingDetailsToCustomer = async (
   if (error) {
     throw error;
   }
-};
+}
 
-const manageSubscriptionStatusChange = async (
+export async function manageSubscriptionStatusChange(
   subscriptionId: string,
   customerId: string,
   createAction = false,
-) => {
+) {
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
     .from("customers")
     .select("id")
@@ -197,11 +196,4 @@ const manageSubscriptionStatusChange = async (
       subscription.default_payment_method as Stripe.PaymentMethod,
     );
   }
-};
-
-export {
-  upsertProductRecord,
-  upsertPriceRecord,
-  createOrRetrieveCustomer,
-  manageSubscriptionStatusChange,
-};
+}

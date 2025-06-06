@@ -1,9 +1,12 @@
 import Stripe from "stripe";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
+import packageJson from "../../package.json";
+
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2022-11-15",
+  typescript: true,
   appInfo: {
     name: "Spotify Clone by Shueiyang",
-    version: "0.1.0",
+    version: packageJson.version,
   },
 });

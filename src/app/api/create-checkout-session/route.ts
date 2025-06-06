@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
 import { createServerSupabaseClient } from "@/supabase/utils/server";
+import { createOrRetrieveCustomer } from "@/supabase/supabaseAdmin";
 import { stripe } from "@/libs/stripe";
 import { getURL } from "@/libs/helpers";
-import { createOrRetrieveCustomer } from "@/supabase/supabaseAdmin";
 
 export async function POST(request: Request) {
   try {
